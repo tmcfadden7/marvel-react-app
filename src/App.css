@@ -1,7 +1,25 @@
+img {
+  width: 100%;
+}
+
 .navbar {
   background-color: #202020;
   padding: 0;
 }
 .nav-link:hover {
   color: #d9534f !important;
+}
+.showcase {
+  width: 100%;
+  height: 350px;
+  background-image: url('/src/marvel-banner.jpg');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-color: #000;
+  border-top: #d9534f solid 2px;
+;
+  
+}
+.comics {
+  display: none;
 }
