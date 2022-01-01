@@ -1,4 +1,5 @@
 import Character from "./Character"
+
 const CharacterGrid = ({ characters, isLoading }) => {
     return (
         <>
@@ -11,8 +12,7 @@ const CharacterGrid = ({ characters, isLoading }) => {
                         )
                     })}
                 </div>
-                }
-                
+                }   
             </div>
         </>
     )
