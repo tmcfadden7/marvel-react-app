@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from './Header';
+import Pagination from './components/Pagination';
 import CharacterGrid from './characters/CharacterGrid'
 import './App.css';
 
@@ -27,6 +28,7 @@ function App() {
   return (
     <div>
       <Header getName={getName}/>
+      <Pagination getName={getName}/>
       <CharacterGrid characters={characters} isLoading={isLoading}/>
     </div>
   );
