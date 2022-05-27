@@ -3,7 +3,7 @@ import axios from 'axios';
 import Header from './Header';
 import Pagination from './components/Pagination';
 import CharacterGrid from './characters/CharacterGrid';
-import './App.css';
+import './styles.scss';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
