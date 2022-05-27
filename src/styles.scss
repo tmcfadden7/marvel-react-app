@@ -29,32 +29,43 @@ img {
 	border-top: #d9534f solid 2px;
 }
 
-.char-grid-container .card {
-	color: #fff;
-	background-color: #202020;
-}
-
-.char-grid-container .card:hover {
-	color: #000;
-	background-color: #e62429;
-}
-
-.char-grid-container .char-name {
-	border-bottom: 5px #e62429 solid;
-	min-height: 200px;
-	max-height: 200px;
-	z-index: 1;
-}
-
-.char-grid-container .card-img {
-	overflow: hidden;
-	max-height: 350px;
-	z-index: 1;
-}
-
-.char-grid-container .card-body {
-	/* margin-top: -300px; */
-	background: #202020;
-	border-top: 5px #e62429 solid;
-	/* height: 100px; */
+.char-grid-container {
+	transform-style: preserve-3d;
+	.card {
+		color: #fff;
+		background-color: #202020;
+		// transition: 0.3s;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.char-name {
+		border-bottom: 5px #e62429 solid;
+		min-height: 200px;
+		max-height: 200px;
+	}
+	.card-img {
+		transition: 0.4s;
+		overflow: hidden;
+		max-height: 350px;
+	}
+	// .card-body {
+	// 	background: #202020;
+	// 	border-top: 5px #e62429 solid;
+	// }
+	.card:hover {
+		color: #000;
+		box-shadow: 0 0 15px rgba(33, 33, 33, 0.8);
+		.char-name {
+			border-bottom-color: #000;
+			background-color: #e62429;
+			z-index: 1;
+		}
+		.char-name h1 {
+			// font-size: 3rem;
+			font-weight: 900;
+		}
+		.card-img {
+			transform: scale(110%);
+		}
+	}
 }
