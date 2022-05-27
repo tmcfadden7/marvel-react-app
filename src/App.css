@@ -34,8 +34,27 @@ img {
 	background-color: #202020;
 }
 
-.char-name {
-	color: #fff;
-	background-color: #202020;
+.char-grid-container .card:hover {
+	color: #000;
+	background-color: #e62429;
+}
+
+.char-grid-container .char-name {
 	border-bottom: 5px #e62429 solid;
+	min-height: 200px;
+	max-height: 200px;
+	z-index: 1;
+}
+
+.char-grid-container .card-img {
+	overflow: hidden;
+	max-height: 350px;
+	z-index: 1;
+}
+
+.char-grid-container .card-body {
+	/* margin-top: -300px; */
+	background: #202020;
+	border-top: 5px #e62429 solid;
+	/* height: 100px; */
 }

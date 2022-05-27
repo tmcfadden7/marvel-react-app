@@ -7,15 +7,15 @@ const Character = ({ name, description, thumbnail }) => {
 		<>
 			<div className='col-sm-12 col-md-6 col-lg-4 mb-4'>
 				<div className='card'>
-					<div className='char-name py-5'>
+					<div className='char-name d-flex justify-content-center align-items-center py-5'>
 						<h1 className='text-center'>{name}</h1>
 					</div>
 					<div className='card-img'>
-						<img src={noImg} alt={name} className='img-thumbnail p-0' />
+						<img src={noImg} alt={name} className='img-fluid p-0' />
 					</div>
-					<div className='card-body'>
+					{/* <div className='card-body'>
 						<p>{description}</p>
-					</div>
+					</div> */}
 					{/* <p>{comics[1]}</p> */}
 				</div>
 			</div>
