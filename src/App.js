@@ -5,9 +5,11 @@ import Header from './Header';
 import Pagination from './components/Pagination';
 import CharacterGrid from './characters/CharacterGrid';
 import './styles.scss';
+import ComicGrid from './comics/ComicGrid';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
+	const [comics, setComics] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [name, setName] = useState('a');
 
@@ -23,18 +25,42 @@ function App() {
 			);
 			const data = await response.data.data.results;
 			const filterData = await data.filter((char) => char.description !== '');
-			// console.log(filterData);
+			// const res = [];
+			// const firstSix = await filterData.map((first, i) => {
+			// 	if (i < 6) {
+			// 		return res.push(first);
+			// 	}
+			// });
+			// console.log(firstSix);
 			setCharacters(filterData);
 			setIsLoading(false);
 		};
 		fetchData();
 	}, [name]);
+
+	useEffect(() => {
+		const fetchComics = async () => {
+			const response = await axios(
+				`http://gateway.marvel.com/v1/public/comics?limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+			);
+			const data = await response.data.data.results;
+			const filterData = data.filter((comic) => comic.description);
+			setComics(filterData);
+			setIsLoading(false);
+		};
+		fetchComics();
+		// console.log('COMICS: ', comics);
+	}, [comics]);
+
+	if (!characters) return;
+	if (!comics) return;
 	return (
 		<div>
 			<Router>
 				<Header getName={getName} />
 				<Pagination getName={getName} />
 				<CharacterGrid characters={characters} isLoading={isLoading} />
+				<ComicGrid comics={comics} isLoading={isLoading} />
 				<Routes>
 					<Route
 						path='/characters'

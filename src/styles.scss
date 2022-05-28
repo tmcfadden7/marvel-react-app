@@ -29,7 +29,8 @@ img {
 	border-top: #d9534f solid 2px;
 }
 
-.char-grid-container {
+.char-grid-container,
+.comic-grid-container {
 	transform-style: preserve-3d;
 	.card {
 		color: #fff;
@@ -40,18 +41,14 @@ img {
 	}
 	.char-name {
 		border-bottom: 5px #e62429 solid;
-		min-height: 200px;
-		max-height: 200px;
+		min-height: 225px;
+		max-height: 225px;
 	}
 	.card-img {
 		transition: 0.4s;
 		overflow: hidden;
-		max-height: 350px;
+		max-height: 535px;
 	}
-	// .card-body {
-	// 	background: #202020;
-	// 	border-top: 5px #e62429 solid;
-	// }
 	.card:hover {
 		color: #000;
 		box-shadow: 0 0 15px rgba(33, 33, 33, 0.8);
