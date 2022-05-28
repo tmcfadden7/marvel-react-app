@@ -43,7 +43,7 @@ function App() {
 			setIsLoading(false);
 		};
 		fetchComics();
-		console.log('COMICS: ', comics);
+		// console.log('COMICS: ', comics);
 	}, [comics]);
 
 	if (!characters) return;
