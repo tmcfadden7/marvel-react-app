@@ -5,6 +5,7 @@ import Header from './Header';
 import Pagination from './components/Pagination';
 import CharacterGrid from './characters/CharacterGrid';
 import './styles.scss';
+import ComicGrid from './comics/ComicGrid';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -52,6 +53,7 @@ function App() {
 				<Header getName={getName} />
 				<Pagination getName={getName} />
 				<CharacterGrid characters={characters} isLoading={isLoading} />
+				<ComicGrid comics={comics} isLoading={isLoading} />
 				<Routes>
 					<Route
 						path='/characters'
