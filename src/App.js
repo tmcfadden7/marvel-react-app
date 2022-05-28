@@ -8,6 +8,7 @@ import './styles.scss';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
+	const [comics, setComics] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [name, setName] = useState('a');
 
@@ -29,6 +30,22 @@ function App() {
 		};
 		fetchData();
 	}, [name]);
+
+	useEffect(() => {
+		const fetchComics = async () => {
+			const response = await axios(
+				`http://gateway.marvel.com/v1/public/comics?limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+			);
+			const data = await response.data.data.results;
+			setComics(data);
+			setIsLoading(false);
+		};
+		fetchComics();
+		console.log('COMICS: ', comics);
+	}, [comics]);
+
+	if (!characters) return;
+	if (!comics) return;
 	return (
 		<div>
 			<Router>
