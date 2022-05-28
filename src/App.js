@@ -25,7 +25,13 @@ function App() {
 			);
 			const data = await response.data.data.results;
 			const filterData = await data.filter((char) => char.description !== '');
-			// console.log(filterData);
+			// const res = [];
+			// const firstSix = await filterData.map((first, i) => {
+			// 	if (i < 6) {
+			// 		return res.push(first);
+			// 	}
+			// });
+			// console.log(firstSix);
 			setCharacters(filterData);
 			setIsLoading(false);
 		};

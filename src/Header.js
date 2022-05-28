@@ -7,7 +7,7 @@ const Header = ({ getName }) => {
 		<>
 			<nav className='navbar sticky-top navbar-expand-lg navbar-light'>
 				<div className='container'>
-					<a className='navbar-brand' href='/'>
+					<a className='navbar-brand' href='#top'>
 						<img src={logo} alt='' className='d-inline-block align-text-top' />
 					</a>
 					<button
@@ -24,15 +24,13 @@ const Header = ({ getName }) => {
 					<div className='collapse navbar-collapse' id='navbarSupportedContent'>
 						<ul className='navbar-nav me-auto mb-2 mb-lg-0'>
 							<li className='nav-item'>
-								<a className='nav-link active text-light' href='/'>
+								<a className='nav-link active text-light' href='#top'>
 									Home
 								</a>
 							</li>
 							<li className='nav-item'>
-								<Link to='/characters'>
-									<a className='nav-link text-light' href='/'>
-										Characters
-									</a>
+								<Link to='/characters' className='nav-link text-light'>
+									Characters
 								</Link>
 							</li>
 							<li className='nav-item'>
