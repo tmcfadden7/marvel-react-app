@@ -4,13 +4,12 @@ const ComicGrid = ({ comics, isLoading }) => {
 	console.log('Works: ', comics);
 	return (
 		<>
-			<section className='comics-container'>
+			<section className='comics-container mt-4'>
 				<div className='container'>
 					{isLoading ? (
 						<h2>Loading...</h2>
 					) : (
 						<div className='row'>
-							Comics Grid
 							{comics.map((comic) => {
 								return <Comics {...comic} />;
 							})}
