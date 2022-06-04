@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
-import Pagination from './components/Pagination';
 import CharacterGrid from './characters/CharacterGrid';
 import './styles.scss';
 import ComicGrid from './comics/ComicGrid';
@@ -50,14 +49,15 @@ function App() {
 	return (
 		<Router>
 			<Header getName={getName} />
-			<Pagination getName={getName} />
-			{/* <CharacterGrid characters={characters} isLoading={isLoading} /> */}
-
 			<Routes>
 				<Route
 					path='/characters'
 					element={
-						<CharacterGrid characters={characters} isLoading={isLoading} />
+						<CharacterGrid
+							characters={characters}
+							isLoading={isLoading}
+							getName={getName}
+						/>
 					}
 				/>
 				<Route
