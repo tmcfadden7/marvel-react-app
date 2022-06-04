@@ -10,17 +10,22 @@ function App() {
 	const [characters, setCharacters] = useState([]);
 	const [comics, setComics] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const [name, setName] = useState('a');
+	const [charName, setCharName] = useState('a');
+	const [comicName, setComicName] = useState('a');
 
-	function getName(letter) {
-		setName(letter);
+	function getCharName(letter) {
+		setCharName(letter);
+		// console.log('click from getname', letter)
+	}
+	function getComicName(letter) {
+		setComicName(letter);
 		// console.log('click from getname', letter)
 	}
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const response = await axios(
-				`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${name}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+				`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${charName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
 			);
 			const data = await response.data.data.results;
 			const filterData = await data.filter((char) => char.description !== '');
@@ -28,12 +33,12 @@ function App() {
 			setIsLoading(false);
 		};
 		fetchData();
-	}, [name]);
+	}, [charName]);
 
 	useEffect(() => {
 		const fetchComics = async () => {
 			const response = await axios(
-				`http://gateway.marvel.com/v1/public/comics?limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+				`http://gateway.marvel.com/v1/public/comics?titleStartsWith=${comicName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
 			);
 			const data = await response.data.data.results;
 			const filterData = data.filter((comic) => comic.description);
@@ -48,7 +53,7 @@ function App() {
 	if (!comics) return;
 	return (
 		<Router>
-			<Header getName={getName} />
+			<Header getName={getCharName} />
 			<Routes>
 				<Route
 					path='/characters'
@@ -56,13 +61,19 @@ function App() {
 						<CharacterGrid
 							characters={characters}
 							isLoading={isLoading}
-							getName={getName}
+							getName={getCharName}
 						/>
 					}
 				/>
 				<Route
 					path='/comics'
-					element={<ComicGrid comics={comics} isLoading={isLoading} />}
+					element={
+						<ComicGrid
+							comics={comics}
+							isLoading={isLoading}
+							getName={getComicName}
+						/>
+					}
 				/>
 			</Routes>
 		</Router>
