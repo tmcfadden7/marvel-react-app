@@ -15,11 +15,9 @@ function App() {
 
 	function getCharName(letter) {
 		setCharName(letter);
-		// console.log('click from getname', letter)
 	}
 	function getComicName(letter) {
 		setComicName(letter);
-		// console.log('click from getname', letter)
 	}
 
 	useEffect(() => {
@@ -47,7 +45,7 @@ function App() {
 		};
 		fetchComics();
 		// console.log('COMICS: ', comics);
-	}, [comics]);
+	}, [comicName]);
 
 	if (!characters) return;
 	if (!comics) return;
