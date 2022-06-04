@@ -1,8 +1,10 @@
+import Pagination from '../components/Pagination';
 import Character from './Character';
 
-const CharacterGrid = ({ characters, isLoading }) => {
+const CharacterGrid = ({ characters, isLoading, getName }) => {
 	return (
 		<>
+			<Pagination getName={getName} />
 			<section className='char-grid-container mt-4'>
 				<div className='container'>
 					{isLoading ? (
