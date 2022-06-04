@@ -25,13 +25,6 @@ function App() {
 			);
 			const data = await response.data.data.results;
 			const filterData = await data.filter((char) => char.description !== '');
-			// const res = [];
-			// const firstSix = await filterData.map((first, i) => {
-			// 	if (i < 6) {
-			// 		return res.push(first);
-			// 	}
-			// });
-			// console.log(firstSix);
 			setCharacters(filterData);
 			setIsLoading(false);
 		};
@@ -55,22 +48,24 @@ function App() {
 	if (!characters) return;
 	if (!comics) return;
 	return (
-		<div>
-			<Router>
-				<Header getName={getName} />
-				<Pagination getName={getName} />
-				<CharacterGrid characters={characters} isLoading={isLoading} />
-				<ComicGrid comics={comics} isLoading={isLoading} />
-				<Routes>
-					<Route
-						path='/characters'
-						element={
-							<CharacterGrid characters={characters} isLoading={isLoading} />
-						}
-					/>
-				</Routes>
-			</Router>
-		</div>
+		<Router>
+			<Header getName={getName} />
+			<Pagination getName={getName} />
+			{/* <CharacterGrid characters={characters} isLoading={isLoading} /> */}
+
+			<Routes>
+				<Route
+					path='/characters'
+					element={
+						<CharacterGrid characters={characters} isLoading={isLoading} />
+					}
+				/>
+				<Route
+					path='/comics'
+					element={<ComicGrid comics={comics} isLoading={isLoading} />}
+				/>
+			</Routes>
+		</Router>
 	);
 }
 
