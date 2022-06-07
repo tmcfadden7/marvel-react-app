@@ -53,7 +53,24 @@ const Header = ({ getName }) => {
 					</div>
 				</div>
 			</nav>
-			<div className='showcase'></div>
+			<section className='showcase'>
+				<div className='container'>
+					<div className='row'>
+						<div className='col-12 col-md-6 text-white'>
+							<h1>Explore Marvel</h1>
+							<p>Find an old favorite comic or find a new one!</p>
+						</div>
+						<div className='col-12 col-md-6'>
+							<div className='card'>
+								<div className='char-name d-flex justify-content-center align-items-center py-5'>
+									<h1 className={`text-center`}>TITLE OR NAME</h1>
+								</div>
+								<div className='card-img'>IMAGE</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</>
 	);
 };
