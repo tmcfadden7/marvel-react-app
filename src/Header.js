@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from './marvel-logo.jpg';
 
-const Header = ({ getName }) => {
+const Header = ({ getName, characters }) => {
+	console.log('header char: ', characters);
 	return (
 		<>
 			<nav className='navbar sticky-top navbar-expand-lg navbar-light'>
@@ -53,20 +54,26 @@ const Header = ({ getName }) => {
 					</div>
 				</div>
 			</nav>
-			<section className='showcase'>
+			<section className='showcase py-5'>
 				<div className='container'>
-					<div className='row'>
+					<div className='row align-content-center'>
 						<div className='col-12 col-md-6 text-white'>
-							<h1>Explore Marvel</h1>
-							<p>Find an old favorite comic or find a new one!</p>
+							<h1 className='headline mb-5'>Explore Marvel</h1>
+							<p className='h3'>
+								Find an old favorite comic or find a new one!
+							</p>
 						</div>
 						<div className='col-12 col-md-6'>
-							<div className='card'>
-								<div className='char-name d-flex justify-content-center align-items-center py-5'>
-									<h1 className={`text-center`}>TITLE OR NAME</h1>
-								</div>
-								<div className='card-img'>IMAGE</div>
-							</div>
+							{characters.map((char) => {
+								return (
+									<div className='card'>
+										<div className='char-name d-flex justify-content-center align-items-center py-5'>
+											<h1 className={`text-center`}>{char.name}</h1>
+										</div>
+										<div className='card-img'>IMAGE</div>
+									</div>
+								);
+							})}
 						</div>
 					</div>
 				</div>

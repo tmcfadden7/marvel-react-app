@@ -51,7 +51,7 @@ function App() {
 	if (!comics) return;
 	return (
 		<Router>
-			<Header getName={getCharName} />
+			<Header getName={getCharName} characters={characters} />
 			<Routes>
 				<Route
 					path='/characters'
