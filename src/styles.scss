@@ -3,6 +3,9 @@ body {
 	line-height: 1.8rem;
 	letter-spacing: 0.18rem;
 }
+#root {
+	background-color: #e62429;
+}
 
 p,
 a {
@@ -10,27 +13,21 @@ a {
 }
 img {
 	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .navbar {
-	background-color: #202020;
+	background-color: #000;
 	padding: 0;
 }
 .nav-link:hover {
 	color: #d9534f !important;
 }
-.showcase {
-	width: 100%;
-	height: 350px;
-	background-image: url('/marvel-banner.jpg');
-	background-repeat: no-repeat;
-	background-position: top;
-	background-color: #000;
-	border-top: #d9534f solid 2px;
-}
 
 .char-grid-container,
-.comic-grid-container {
+.comic-grid-container,
+.showcase-container {
 	transform-style: preserve-3d;
 	.card {
 		color: #fff;
@@ -47,7 +44,7 @@ img {
 	.card-img {
 		transition: 0.4s;
 		overflow: hidden;
-		max-height: 535px;
+		height: 325px;
 	}
 	.card:hover {
 		color: #000;
@@ -66,3 +63,55 @@ img {
 		}
 	}
 }
+
+.showcase-container {
+	width: 100%;
+	height: 500px;
+	position: relative;
+	// background-image: url('/marvel-banner.jpg');
+	// background-repeat: no-repeat;
+	// background-position: top;
+	background-color: #000;
+	// border-top: #d9534f solid 2px;
+	.headline {
+		font-size: 60px;
+	}
+	.card {
+		// height: 80vh;
+		width: 100%;
+		position: relative;
+		// top: 60px;
+		z-index: 1;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+	.char-name {
+		border-top: 5px #e62429 solid;
+		border-bottom: none;
+		min-height: fit-content;
+		max-height: fit-content;
+	}
+	.card-img {
+		height: 100vh;
+		img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+	}
+}
+.showcase-container::before,
+.showcase-container::after {
+	content: '';
+	position: absolute;
+	height: 100px;
+	bottom: -70px;
+	right: 0;
+	left: 0;
+	background: #e62429;
+	transform: skewY(-3deg);
+	-webkit-transform: skewY(-3deg);
+}
+
+// .fav-character-container {
+// 	background-color: #e62429;
+// }

@@ -2,7 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from './marvel-logo.jpg';
 
-const Header = ({ getName }) => {
+const Header = ({ getName, characters, favCharacters }) => {
+	console.log('header char: ', characters);
+	console.log('header MY FAV char: ', favCharacters);
+
+	let ranNum = Math.floor(Math.random() * favCharacters.length);
+	const filterFav = favCharacters.filter((fav, index) => index === ranNum);
+	console.log('charsss: ', filterFav);
+	const randomFav = filterFav.map((favChar) => favChar[0]);
+	console.log('RANDOM FAV: ', randomFav);
+
 	return (
 		<>
 			<nav className='navbar sticky-top navbar-expand-lg navbar-light'>
@@ -53,7 +62,44 @@ const Header = ({ getName }) => {
 					</div>
 				</div>
 			</nav>
-			<div className='showcase'></div>
+			<section className='showcase-container py-5'>
+				<div className='container'>
+					<div className='row align-content-center'>
+						<div className='col-12 col-md-6 text-white'>
+							<h1 className='headline mb-5'>Explore Marvel</h1>
+							<p className='h3'>
+								Find an old favorite comic or find a new one!
+							</p>
+						</div>
+						<div className='col-12 col-md-6'>
+							{randomFav.map((char) => {
+								return (
+									<div
+										className='card'
+										// style={{
+										// 	backgroundImage: `url(${char.thumbnail.path}.jpg)`,
+										// }}
+									>
+										<div className='card-img'>
+											<img
+												src={char.thumbnail.path + '.jpg'}
+												alt={char.name}
+												className='img-fluid p-0'
+											/>
+										</div>
+										<div className='char-name d-flex flex-column justify-content-center align-items-center py-4'>
+											<h1 className={`text-center`}>{char.name}</h1>
+										</div>
+										{/* <div className='char-name d-flex flex-column justify-content-center align-items-end py-4'>
+											<p className='px-3'>{char.description}</p>
+										</div> */}
+									</div>
+								);
+							})}
+						</div>
+					</div>
+				</div>
+			</section>
 		</>
 	);
 };
