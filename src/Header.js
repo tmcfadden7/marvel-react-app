@@ -2,8 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from './marvel-logo.jpg';
 
-const Header = ({ getName, characters }) => {
+const Header = ({ getName, characters, favCharacters }) => {
 	console.log('header char: ', characters);
+	console.log('header MY FAV char: ', favCharacters);
+
+	let ranNum = Math.floor(Math.random() * favCharacters.length);
+	const filterFav = favCharacters.filter((fav, index) => index === ranNum);
+	console.log('charsss: ', filterFav);
+	const randomFav = filterFav.map((favChar) => favChar[0]);
+	console.log('RANDOM FAV: ', randomFav);
+
 	return (
 		<>
 			<nav className='navbar sticky-top navbar-expand-lg navbar-light'>
@@ -64,7 +72,7 @@ const Header = ({ getName, characters }) => {
 							</p>
 						</div>
 						<div className='col-12 col-md-6'>
-							{characters.map((char) => {
+							{randomFav.map((char) => {
 								return (
 									<div
 										className='card'
@@ -76,12 +84,12 @@ const Header = ({ getName, characters }) => {
 											<h1 className={`text-center`}>{char.name}</h1>
 										</div>
 										{/* <div className='card-img'>
-											<img
-												src={char.thumbnail.path + '.jpg'}
-												alt={char.name}
-												className='img-fluid p-0'
-											/>
-										</div> */}
+												<img
+													src={char.thumbnail.path + '.jpg'}
+													alt={char.name}
+													className='img-fluid p-0'
+												/>
+											</div> */}
 										<div className='char-name d-flex flex-column justify-content-center align-items-end py-4'>
 											<p className='px-3'>{char.description}</p>
 										</div>

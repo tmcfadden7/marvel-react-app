@@ -1,6 +1,7 @@
 import React from 'react';
 
-const FavCharacter = () => {
+const FavCharacter = ({ favCharacters }) => {
+	console.log('MY FAV3: ', favCharacters);
 	return (
 		<section className='fav-character-container'>
 			<div className='container py-5'>
