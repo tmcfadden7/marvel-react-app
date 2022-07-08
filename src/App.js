@@ -50,13 +50,14 @@ function App() {
 				(char) =>
 					char.description !== '' && char.name.toLowerCase() === 'thanos'
 			);
-			// const tonyData = await data.filter(
-			// 	(char) =>
-			// 		char.description !== '' && char.name.toLowerCase() === 'the gaurdians'
-			// );
 			myFavCharacters.push(thorData);
 			myFavCharacters.push(thanosData);
-			setFavCharacters(myFavCharacters);
+			let ranNum = Math.floor(Math.random() * myFavCharacters.length);
+			const filterFav = myFavCharacters.filter(
+				(fav, index) => index === ranNum
+			);
+			const randomFav = filterFav.map((favChar) => favChar[0]);
+			setFavCharacters(randomFav);
 			setIsLoading(false);
 			// console.log('MY FAV: ', favCharacters);
 		};

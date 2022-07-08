@@ -6,12 +6,6 @@ const Header = ({ getName, characters, favCharacters }) => {
 	console.log('header char: ', characters);
 	console.log('header MY FAV char: ', favCharacters);
 
-	let ranNum = Math.floor(Math.random() * favCharacters.length);
-	const filterFav = favCharacters.filter((fav, index) => index === ranNum);
-	console.log('charsss: ', filterFav);
-	const randomFav = filterFav.map((favChar) => favChar[0]);
-	console.log('RANDOM FAV: ', randomFav);
-
 	return (
 		<>
 			<nav className='navbar sticky-top navbar-expand-lg navbar-light'>
@@ -72,7 +66,7 @@ const Header = ({ getName, characters, favCharacters }) => {
 							</p>
 						</div>
 						<div className='col-12 col-md-6'>
-							{randomFav.map((char) => {
+							{favCharacters.map((char) => {
 								return (
 									<div
 										className='card'
