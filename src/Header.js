@@ -76,23 +76,23 @@ const Header = ({ getName, characters, favCharacters }) => {
 								return (
 									<div
 										className='card'
-										style={{
-											backgroundImage: `url(${char.thumbnail.path}.jpg)`,
-										}}
+										// style={{
+										// 	backgroundImage: `url(${char.thumbnail.path}.jpg)`,
+										// }}
 									>
+										<div className='card-img'>
+											<img
+												src={char.thumbnail.path + '.jpg'}
+												alt={char.name}
+												className='img-fluid p-0'
+											/>
+										</div>
 										<div className='char-name d-flex flex-column justify-content-center align-items-center py-4'>
 											<h1 className={`text-center`}>{char.name}</h1>
 										</div>
-										{/* <div className='card-img'>
-												<img
-													src={char.thumbnail.path + '.jpg'}
-													alt={char.name}
-													className='img-fluid p-0'
-												/>
-											</div> */}
-										<div className='char-name d-flex flex-column justify-content-center align-items-end py-4'>
+										{/* <div className='char-name d-flex flex-column justify-content-center align-items-end py-4'>
 											<p className='px-3'>{char.description}</p>
-										</div>
+										</div> */}
 									</div>
 								);
 							})}

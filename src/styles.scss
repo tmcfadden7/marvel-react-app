@@ -80,17 +80,19 @@ img {
 		// height: 80vh;
 		width: 100%;
 		position: relative;
-		top: 60px;
+		// top: 60px;
 		z-index: 1;
 		background-size: cover;
 		background-repeat: no-repeat;
 	}
 	.char-name {
+		border-top: 5px #e62429 solid;
+		border-bottom: none;
 		min-height: fit-content;
 		max-height: fit-content;
 	}
 	.card-img {
-		height: 500px;
+		height: 100vh;
 		img {
 			max-width: 100%;
 			max-height: 100%;
