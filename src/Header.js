@@ -54,7 +54,7 @@ const Header = ({ getName, characters }) => {
 					</div>
 				</div>
 			</nav>
-			<section className='showcase py-5'>
+			<section className='showcase-container py-5'>
 				<div className='container'>
 					<div className='row align-content-center'>
 						<div className='col-12 col-md-6 text-white'>
@@ -66,11 +66,25 @@ const Header = ({ getName, characters }) => {
 						<div className='col-12 col-md-6'>
 							{characters.map((char) => {
 								return (
-									<div className='card'>
-										<div className='char-name d-flex justify-content-center align-items-center py-5'>
+									<div
+										className='card'
+										style={{
+											backgroundImage: `url(${char.thumbnail.path}.jpg)`,
+										}}
+									>
+										<div className='char-name d-flex flex-column justify-content-center align-items-center py-4'>
 											<h1 className={`text-center`}>{char.name}</h1>
 										</div>
-										<div className='card-img'>IMAGE</div>
+										{/* <div className='card-img'>
+											<img
+												src={char.thumbnail.path + '.jpg'}
+												alt={char.name}
+												className='img-fluid p-0'
+											/>
+										</div> */}
+										<div className='char-name d-flex flex-column justify-content-center align-items-end py-4'>
+											<p className='px-3'>{char.description}</p>
+										</div>
 									</div>
 								);
 							})}

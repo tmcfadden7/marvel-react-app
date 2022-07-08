@@ -5,6 +5,7 @@ import Header from './Header';
 import CharacterGrid from './characters/CharacterGrid';
 import './styles.scss';
 import ComicGrid from './comics/ComicGrid';
+import FavCharacter from './components/FavCharacter';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -49,9 +50,11 @@ function App() {
 
 	if (!characters) return;
 	if (!comics) return;
+
+	const showcaseChar = characters.filter((char, i) => i === 0);
 	return (
 		<Router>
-			<Header getName={getCharName} characters={characters} />
+			<Header getName={getCharName} characters={showcaseChar} />
 			<Routes>
 				<Route
 					path='/characters'
@@ -74,6 +77,7 @@ function App() {
 					}
 				/>
 			</Routes>
+			<FavCharacter />
 		</Router>
 	);
 }
