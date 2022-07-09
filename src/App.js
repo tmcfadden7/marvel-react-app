@@ -14,6 +14,7 @@ function App() {
 	const [charName, setCharName] = useState('a');
 	const [comicName, setComicName] = useState('a');
 	const [favCharacters, setFavCharacters] = useState([]);
+	const [favComics, setFavComics] = useState([]);
 
 	function getCharName(letter) {
 		setCharName(letter);
@@ -78,10 +79,33 @@ function App() {
 		// console.log('COMICS: ', comics);
 	}, [comicName]);
 
+	useEffect(() => {
+		const fetchComics = async () => {
+			const thorResponse = await axios(
+				`http://gateway.marvel.com/v1/public/comics?characters=1009664&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+			);
+			const thanosResponse = await axios(
+				`http://gateway.marvel.com/v1/public/comics?characters=1009652&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+			);
+			const thorData = await thorResponse.data.data.results;
+			const thanosData = await thanosResponse.data.data.results;
+
+			const thorFilterData = thorData.filter((comic) => comic.description);
+			const thanosFilterData = thanosData.filter((comic) => comic.description);
+
+			setFavComics(thorFilterData);
+			setIsLoading(false);
+			// console.log('THORCOMICS: ', thorFilterData);
+		};
+		fetchComics();
+		// console.log('COMICS: ', favComics);
+	}, [favComics]);
+
 	if (!characters) return;
 	if (!favCharacters) return;
 	if (!comics) return;
-
+	if (!favComics) return;
+	// console.log('COMICS: ', favComics);
 	const showcaseChar = characters.filter((char, i) => i === 0);
 	return (
 		<Router>
@@ -112,7 +136,7 @@ function App() {
 					}
 				/>
 			</Routes>
-			<FavCharacter favCharacters={favCharacters} />
+			<FavCharacter favCharacters={favCharacters} favComics={favComics} />
 		</Router>
 	);
 }
