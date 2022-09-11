@@ -29,21 +29,23 @@ const Pagination = ({ getName }) => {
 	];
 
 	return (
-		<div className='container'>
-			<div className='d-flex flex-wrap justify-content-center'>
-				{alpha.map((bet) => {
-					return (
-						<button
-							key={bet}
-							onClick={(e) => getName(e.target.innerHTML)}
-							className='btn btn-dark btn-pagination border border-danger'
-						>
-							{bet}
-						</button>
-					);
-				})}
+		<section className='pagination-container'>
+			<div className='container'>
+				<div className='d-flex flex-wrap justify-content-center'>
+					{alpha.map((bet) => {
+						return (
+							<button
+								key={bet}
+								onClick={(e) => getName(e.target.innerHTML)}
+								className='btn btn-dark btn-pagination border border-danger'
+							>
+								{bet}
+							</button>
+						);
+					})}
+				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 

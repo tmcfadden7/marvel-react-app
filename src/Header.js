@@ -2,10 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from './marvel-logo.jpg';
 
-const Header = ({ getName, characters, favCharacters }) => {
-	console.log('header char: ', characters);
-	console.log('header MY FAV char: ', favCharacters);
-
+const Header = ({ getName, characters }) => {
 	return (
 		<>
 			<nav className='navbar sticky-top navbar-expand-lg navbar-light'>
@@ -56,40 +53,49 @@ const Header = ({ getName, characters, favCharacters }) => {
 					</div>
 				</div>
 			</nav>
-			<section className='showcase-container py-5'>
+			<section className='showcase-container'>
 				<div className='container'>
-					<div className='row align-content-center'>
+					<div className='row'>
 						<div className='col-12 col-md-6 text-white'>
 							<h1 className='headline mb-5'>Explore Marvel</h1>
 							<p className='h3'>
 								Find an old favorite comic or find a new one!
 							</p>
 						</div>
-						<div className='col-12 col-md-6'>
-							{favCharacters.map((char) => {
-								return (
-									<div
-										className='card'
-										// style={{
-										// 	backgroundImage: `url(${char.thumbnail.path}.jpg)`,
-										// }}
-									>
-										<div className='card-img'>
-											<img
-												src={char.thumbnail.path + '.jpg'}
-												alt={char.name}
-												className='img-fluid p-0'
-											/>
-										</div>
-										<div className='char-name d-flex flex-column justify-content-center align-items-center py-4'>
-											<h1 className={`text-center`}>{char.name}</h1>
-										</div>
-										{/* <div className='char-name d-flex flex-column justify-content-center align-items-end py-4'>
-											<p className='px-3'>{char.description}</p>
-										</div> */}
+						<div className='col-12 col-md-6 bg-white text-dark p-5 card'>
+							<div className='sign-up-header'>
+								<h2>Sign up</h2>
+								<p className='lead'>Create your own Marvel multiverse!</p>
+							</div>
+							<form>
+								<div className='mb-3'>
+									<label htmlFor='exampleInputEmail1' className='form-label'>
+										Username
+									</label>
+									<input
+										type='email'
+										className='form-control'
+										id='exampleInputEmail1'
+										aria-describedby='emailHelp'
+									/>
+									<div id='emailHelp' className='form-text'>
+										We'll never share your email with anyone else.
 									</div>
-								);
-							})}
+								</div>
+								<div className='mb-3'>
+									<label htmlFor='exampleInputPassword1' className='form-label'>
+										Password
+									</label>
+									<input
+										type='password'
+										className='form-control'
+										id='exampleInputPassword1'
+									/>
+								</div>
+								<button type='submit' className='btn btn-primary'>
+									Submit
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>

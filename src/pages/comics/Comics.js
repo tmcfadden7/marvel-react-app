@@ -1,4 +1,4 @@
-import logo from '../../src/marvel-comics.png';
+import logo from '../../../src/marvel-comics.png';
 
 const Comics = ({ title, thumbnail, id }) => {
 	let noImg = thumbnail.path + '.jpg';
