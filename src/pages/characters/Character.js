@@ -1,9 +1,6 @@
-import logo from '../../../src/marvel-logo.jpg';
+import logo from '../../assets/marvel-logo.jpg';
 
 const Character = ({ name, thumbnail, id, isLoading }) => {
-	// let noImg = isLoading
-	// 	? thumbnail.path
-	// 	: thumbnail.path + '.' + thumbnail.extension;
 	let noImg = thumbnail.path.includes('.jpg')
 		? thumbnail.path
 		: thumbnail.path + '.' + thumbnail.extension;

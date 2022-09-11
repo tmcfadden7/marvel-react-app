@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SignUp from './components/SignUp';
-import logo from './marvel-logo.jpg';
+import SignUp from './SignUp';
+import logo from '../assets/marvel-logo.jpg';
 
 const Header = ({ getName, characters }) => {
 	return (

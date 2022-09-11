@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-import Header from './Header';
+import Header from './components/Header';
 import CharacterGrid from './pages/characters/CharacterGrid';
 import './styles.scss';
 import ComicGrid from './pages/comics/ComicGrid';
