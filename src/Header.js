@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SignUp from './components/SignUp';
 import logo from './marvel-logo.jpg';
 
 const Header = ({ getName, characters }) => {
@@ -67,35 +68,7 @@ const Header = ({ getName, characters }) => {
 								<h2>Sign up</h2>
 								<p className='lead'>Create your own Marvel multiverse!</p>
 							</div>
-							<form>
-								<div className='mb-3'>
-									<label htmlFor='exampleInputEmail1' className='form-label'>
-										Username
-									</label>
-									<input
-										type='email'
-										className='form-control'
-										id='exampleInputEmail1'
-										aria-describedby='emailHelp'
-									/>
-									<div id='emailHelp' className='form-text'>
-										We'll never share your email with anyone else.
-									</div>
-								</div>
-								<div className='mb-3'>
-									<label htmlFor='exampleInputPassword1' className='form-label'>
-										Password
-									</label>
-									<input
-										type='password'
-										className='form-control'
-										id='exampleInputPassword1'
-									/>
-								</div>
-								<button type='submit' className='btn btn-primary'>
-									Submit
-								</button>
-							</form>
+							<SignUp />
 						</div>
 					</div>
 				</div>
