@@ -12,7 +12,9 @@ const CharacterGrid = ({ characters, isLoading, getName }) => {
 					) : (
 						<div className='row justify-content-around'>
 							{characters.map((character) => {
-								return <Character isLoading {...character} />;
+								return (
+									<Character key={character.id} isLoading {...character} />
+								);
 							})}
 						</div>
 					)}
