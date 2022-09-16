@@ -1,4 +1,4 @@
-import Pagination from '../components/Pagination';
+import Pagination from '../../components/Pagination';
 import Comics from './Comics';
 
 const ComicGrid = ({ comics, isLoading, getName }) => {

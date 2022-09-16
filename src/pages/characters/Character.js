@@ -1,11 +1,13 @@
-import logo from '../../src/marvel-logo.jpg';
+import logo from '../../assets/marvel-logo.jpg';
 
-const Character = ({ name, thumbnail, id }) => {
-	let noImg = thumbnail.path + '.jpg';
+const Character = ({ name, thumbnail, isLoading }) => {
+	let noImg = thumbnail.path.includes('.jpg')
+		? thumbnail.path
+		: thumbnail.path + '.' + thumbnail.extension;
 	noImg = !noImg.includes('image_not_available') ? noImg : logo;
 	return (
 		<>
-			<div key={id} className='col-sm-12 col-md-6 col-lg-4 mb-4'>
+			<div className='col-sm-12 col-md-6 col-lg-4 mb-4'>
 				<div className='card'>
 					<div className='char-name d-flex justify-content-center align-items-center py-5'>
 						<h1 className='text-center'>{name}</h1>

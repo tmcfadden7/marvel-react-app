@@ -1,4 +1,4 @@
-import Pagination from '../components/Pagination';
+import Pagination from '../../components/Pagination';
 import Character from './Character';
 
 const CharacterGrid = ({ characters, isLoading, getName }) => {
@@ -12,7 +12,9 @@ const CharacterGrid = ({ characters, isLoading, getName }) => {
 					) : (
 						<div className='row justify-content-around'>
 							{characters.map((character) => {
-								return <Character {...character} />;
+								return (
+									<Character key={character.id} isLoading {...character} />
+								);
 							})}
 						</div>
 					)}

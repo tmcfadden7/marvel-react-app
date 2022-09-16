@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-import Header from './Header';
-import CharacterGrid from './characters/CharacterGrid';
+import Header from './components/Header';
+import CharacterGrid from './pages/characters/CharacterGrid';
 import './styles.scss';
-import ComicGrid from './comics/ComicGrid';
-import FavCharacter from './components/FavCharacter';
+import ComicGrid from './pages/comics/ComicGrid';
+import Home from './pages/Home';
+import { Data } from './data';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -13,7 +14,7 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [charName, setCharName] = useState('a');
 	const [comicName, setComicName] = useState('a');
-	const [favCharacters, setFavCharacters] = useState([]);
+	const [fetchApi, setFetchApi] = useState(false);
 
 	function getCharName(letter) {
 		setCharName(letter);
@@ -23,73 +24,64 @@ function App() {
 	}
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const response = await axios(
-				`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${charName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
-			);
-			const data = await response.data.data.results;
-			const filterData = await data.filter((char) => char.description !== '');
-			setCharacters(filterData);
-			setIsLoading(false);
+		const fetchCharacters = async () => {
+			try {
+				//	if (fetchApi) {
+				const response = await axios(
+					`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${charName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+				);
+				const data = await response.data.data.results;
+				const filterData = await data.filter((char) => char.description !== '');
+				setCharacters(filterData);
+				setIsLoading(false);
+				//	} else {
+				// 	setCharacters(Data.characters);
+				// 	setIsLoading(false);
+				// }
+			} catch (error) {
+				console.log(error);
+				setCharacters(Data.characters);
+				setIsLoading(false);
+			}
 			// console.log('characters: ', characters);
 		};
-		fetchData();
-	}, [charName]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const response = await axios(
-				`http://gateway.marvel.com/v1/public/characters?nameStartsWith=t&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
-			);
-			const data = await response.data.data.results;
-			let myFavCharacters = [];
-			const thorData = await data.filter(
-				(char) => char.description !== '' && char.name.toLowerCase() === 'thor'
-			);
-			const thanosData = await data.filter(
-				(char) =>
-					char.description !== '' && char.name.toLowerCase() === 'thanos'
-			);
-			// const tonyData = await data.filter(
-			// 	(char) =>
-			// 		char.description !== '' && char.name.toLowerCase() === 'the gaurdians'
-			// );
-			myFavCharacters.push(thorData);
-			myFavCharacters.push(thanosData);
-			setFavCharacters(myFavCharacters);
-			setIsLoading(false);
-			// console.log('MY FAV: ', favCharacters);
-		};
-		fetchData();
-	}, []);
+		fetchCharacters();
+	}, [charName, fetchApi]);
 
 	useEffect(() => {
 		const fetchComics = async () => {
-			const response = await axios(
-				`http://gateway.marvel.com/v1/public/comics?titleStartsWith=${comicName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
-			);
-			const data = await response.data.data.results;
-			const filterData = data.filter((comic) => comic.description);
-			setComics(filterData);
-			setIsLoading(false);
+			try {
+				if (fetchApi) {
+					const response = await axios(
+						`http://gateway.marvel.com/v1/public/comics?titleStartsWith=${comicName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+					);
+					const data = await response.data.data.results;
+					const filterData = data.filter((comic) => comic.description);
+					setComics(filterData);
+					setIsLoading(false);
+				} else {
+					// use placeholder data
+				}
+			} catch (error) {
+				console.log('COMICS', error);
+				setCharacters(Data.comics);
+				setIsLoading(false);
+			}
 		};
 		fetchComics();
 		// console.log('COMICS: ', comics);
-	}, [comicName]);
+	}, [comicName, fetchApi]);
 
 	if (!characters) return;
-	if (!favCharacters) return;
 	if (!comics) return;
-
-	const showcaseChar = characters.filter((char, i) => i === 0);
 	return (
 		<Router>
-			<Header
-				getName={getCharName}
-				characters={showcaseChar}
-				favCharacters={favCharacters}
-			/>
+			<Header getName={getCharName} />
 			<Routes>
+				<Route
+					path='/'
+					element={<Home characters={characters} isLoading={isLoading} />}
+				/>
 				<Route
 					path='/characters'
 					element={
@@ -111,7 +103,6 @@ function App() {
 					}
 				/>
 			</Routes>
-			<FavCharacter favCharacters={favCharacters} />
 		</Router>
 	);
 }
