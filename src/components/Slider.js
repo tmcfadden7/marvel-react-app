@@ -10,16 +10,18 @@ import logo from '../assets/marvel-logo.jpg';
 const Slider = ({ characters }) => {
 	return (
 		<section className='slider-container'>
-			<div className='container'>
+			<div>
 				<Swiper
 					modules={[Navigation, Pagination, Scrollbar, A11y]}
-					// spaceBetween={10}
-					slidesPerView={3}
+					spaceBetween={30}
+					slidesPerView={4}
 					navigation
 					pagination={{ clickable: true }}
 					scrollbar={{ draggable: true }}
 					onSwiper={(swiper) => console.log(swiper)}
 					onSlideChange={() => console.log('slide change')}
+					// loop={true}
+					// style={{ transform: 'translate3d(676.875px, 0px, 0px)' }}
 				>
 					{characters.map((character) => {
 						let noImg = character.thumbnail.path.includes('.jpg')
@@ -27,7 +29,11 @@ const Slider = ({ characters }) => {
 							: character.thumbnail.path + '.' + character.thumbnail.extension;
 						noImg = !noImg.includes('image_not_available') ? noImg : logo;
 						return (
-							<SwiperSlide key={character.id}>
+							<SwiperSlide
+								key={character.id}
+								// style={{ transform: 'translateZ(0)' }}
+								style={{ transform: 'translate3d(150px, 0px, 0px)' }}
+							>
 								<div className='card'>
 									<div className='char-name d-flex justify-content-center align-items-center py-5'>
 										<h1 className='text-center'>{character.name}</h1>
