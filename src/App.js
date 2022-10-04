@@ -7,6 +7,7 @@ import './styles.scss';
 import ComicGrid from './pages/comics/ComicGrid';
 import Home from './pages/Home';
 import { Data } from './data';
+import SignUp from './components/SignUp';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -82,6 +83,7 @@ function App() {
 					path='/'
 					element={<Home characters={characters} isLoading={isLoading} />}
 				/>
+				<Route path='/sign-up' element={<SignUp />} />
 				<Route
 					path='/characters'
 					element={
