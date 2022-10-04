@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SignUp from './SignUp';
 import logo from '../assets/marvel-logo.jpg';
+import SignIn from './SignIn';
 
 const Header = ({ getName, characters }) => {
 	return (
@@ -63,12 +64,8 @@ const Header = ({ getName, characters }) => {
 								Find an old favorite comic or find a new one!
 							</p>
 						</div>
-						<div className='col-12 col-md-6 bg-white text-dark p-5 card'>
-							<div className='sign-up-header'>
-								<h2>Sign up</h2>
-								<p className='lead'>Create your own Marvel multiverse!</p>
-							</div>
-							<SignUp />
+						<div className='col-12 col-md-6 bg-white text-dark p-4 card'>
+							<SignIn />
 						</div>
 					</div>
 				</div>
