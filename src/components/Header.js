@@ -13,7 +13,7 @@ const Header = ({ getName, characters }) => {
 						<img src={logo} alt='' className='d-inline-block align-text-top' />
 					</Link>
 					<button
-						className='navbar-toggler'
+						className='navbar-toggler text-light bg-light'
 						type='button'
 						data-bs-toggle='collapse'
 						data-bs-target='#navbarSupportedContent'

@@ -4,7 +4,7 @@ import {
 	signInWithEmailAndPassword,
 	onAuthStateChanged,
 } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
 	const [formData, setFormData] = useState({
@@ -12,6 +12,8 @@ const SignIn = () => {
 		password: '',
 	});
 	const [user, setUser] = useState({});
+
+	const navigate = useNavigate();
 
 	const auth = getAuth();
 
@@ -40,15 +42,24 @@ const SignIn = () => {
 				email,
 				password
 			);
-
+			setFormData({
+				email: '',
+				password: '',
+			});
 			console.log(userCredential);
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
+	const logOut = () => {
+		if (auth.currentUser) {
+			auth.signOut();
+			navigate('/');
+		}
+	};
 	return (
 		<>
-			{/* FIX CHECKING IF USER EXISTS */}
 			{!auth.currentUser ? (
 				<>
 					<div className='sign-up-header'>
@@ -93,6 +104,7 @@ const SignIn = () => {
 			) : (
 				<>
 					<p>you are logged in already</p>
+					<button onClick={logOut}>Log Out</button>
 				</>
 			)}
 		</>
