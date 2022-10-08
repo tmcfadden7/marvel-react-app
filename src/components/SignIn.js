@@ -23,7 +23,7 @@ const SignIn = () => {
 			setUser(currentUser);
 		});
 	}, [auth]);
-	console.log('MY USER: ', user);
+	// console.log('MY USER: ', user);
 
 	const { email, password } = formData;
 
