@@ -4,7 +4,7 @@ import SignUp from './SignUp';
 import logo from '../assets/marvel-logo.jpg';
 import SignIn from './SignIn';
 
-const Header = ({ getName, characters }) => {
+const Header = ({ getName }) => {
 	return (
 		<>
 			<nav className='navbar sticky-top navbar-expand-lg navbar-light'>

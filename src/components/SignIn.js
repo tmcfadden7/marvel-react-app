@@ -23,7 +23,7 @@ const SignIn = () => {
 			setUser(currentUser);
 		});
 	}, [auth]);
-	console.log('MY USER: ', user);
+	// console.log('MY USER: ', user);
 
 	const { email, password } = formData;
 
@@ -52,12 +52,6 @@ const SignIn = () => {
 		}
 	};
 
-	const logOut = () => {
-		if (auth.currentUser) {
-			auth.signOut();
-			navigate('/');
-		}
-	};
 	return (
 		<>
 			{!auth.currentUser ? (
@@ -104,7 +98,6 @@ const SignIn = () => {
 			) : (
 				<>
 					<p>you are logged in already</p>
-					<button onClick={logOut}>Log Out</button>
 				</>
 			)}
 		</>
