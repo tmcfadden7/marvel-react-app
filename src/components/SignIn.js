@@ -56,44 +56,41 @@ const SignIn = () => {
 		<>
 			{!auth.currentUser ? (
 				<>
-					<div className='sign-up-header'>
-						<h2>Sign in</h2>
-						<p className='lead'>Create your own Marvel multiverse!</p>
-					</div>
-					<form onSubmit={onSubmit}>
-						<div className='mb-3'>
-							<label htmlFor='Email' className='form-label'>
-								Email
-							</label>
-							<input
-								type='email'
-								className='form-control'
-								id='email'
-								value={email}
-								onChange={onChange}
-							/>
-							<div id='emailHelp' className='form-text'>
-								We'll never share your email with anyone else.
+					<div className='bg-white text-dark p-4 form-container'>
+						<div className='sign-up-header'>
+							<h2>Sign in</h2>
+						</div>
+						<form onSubmit={onSubmit}>
+							<div className='my-3'>
+								<input
+									type='email'
+									className='form-control'
+									id='email'
+									placeholder='Email'
+									value={email}
+									onChange={onChange}
+								/>
+								<p className='email-help'>
+									We'll never share your email with anyone else.
+								</p>
 							</div>
-						</div>
 
-						<div className='mb-3'>
-							<label htmlFor='Password' className='form-label'>
-								Password
-							</label>
-							<input
-								type='password'
-								className='form-control'
-								id='password'
-								value={password}
-								onChange={onChange}
-							/>
-						</div>
-						<button className='btn btn-primary'>Submit</button>
-					</form>
-					<div className='mt-3'>
-						<Link to='/'>Sign Up instead</Link>
-					</div>{' '}
+							<div className='my-3'>
+								<input
+									type='password'
+									className='form-control'
+									id='password'
+									placeholder='Password'
+									value={password}
+									onChange={onChange}
+								/>
+							</div>
+							<button className='btn btn-primary'>Submit</button>
+						</form>
+						<Link to='/sign-up'>
+							<p className='mt-3'>Sign Up instead</p>
+						</Link>{' '}
+					</div>
 				</>
 			) : (
 				<>

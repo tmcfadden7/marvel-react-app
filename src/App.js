@@ -10,6 +10,7 @@ import { Data } from './data';
 import SignUp from './components/SignUp';
 import Profile from './pages/Profile';
 import PrivateRoute from './components/PrivateRoute';
+import NavBar from './components/NavBar';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -79,11 +80,18 @@ function App() {
 	if (!comics) return;
 	return (
 		<Router>
-			<Header getName={getCharName} />
+			<NavBar />
+			<Header />
 			<Routes>
 				<Route
 					path='/'
-					element={<Home characters={characters} isLoading={isLoading} />}
+					element={
+						<Home
+							characters={characters}
+							isLoading={isLoading}
+							getName={getCharName}
+						/>
+					}
 				/>
 				<Route path='/sign-up' element={<SignUp />} />
 				<Route path='/profile' element={<PrivateRoute />}>
