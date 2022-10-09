@@ -38,17 +38,6 @@ const NavBar = () => {
 							</Link>
 						</li>
 					</ul>
-					<form className='d-flex'>
-						<input
-							className='form-control me-2 border border-danger border-3'
-							type='search'
-							placeholder='Search Character'
-							onKeyUp={(e) => {
-								e.target.value ? getName(e.target.value) : getName('a');
-							}}
-						/>
-						{/* <button className="btn btn-outline-danger" type="submit">Search</button> */}
-					</form>
 				</div>
 			</div>
 		</nav>
