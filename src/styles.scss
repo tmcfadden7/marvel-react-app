@@ -62,9 +62,21 @@ img {
 		border-bottom: 1px #b4becb solid;
 		padding: 3px;
 	}
+	input:focus {
+		border-color: none;
+	}
 	.email-help {
 		font-size: 14px;
 	}
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
 
 .char-grid-container,
@@ -74,6 +86,11 @@ img {
 .slider-container,
 .profile-container {
 	transform-style: preserve-3d;
+	.grid {
+		overflow: visible;
+		grid-template-columns: 55% auto;
+		gap: 30px;
+	}
 	.card {
 		color: #fff;
 		background-color: #202020;

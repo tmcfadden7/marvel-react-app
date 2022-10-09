@@ -87,9 +87,9 @@ const SignIn = () => {
 							</div>
 							<button className='btn btn-primary'>Submit</button>
 						</form>
-						<div className='mt-3'>
-							<Link to='/sign-up'>Sign Up instead</Link>
-						</div>{' '}
+						<Link to='/sign-up'>
+							<p className='mt-3'>Sign Up instead</p>
+						</Link>{' '}
 					</div>
 				</>
 			) : (
