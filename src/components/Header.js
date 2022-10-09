@@ -6,16 +6,14 @@ const Header = () => {
 		<>
 			<section className='showcase-container'>
 				<div className='container'>
-					<div className='row'>
-						<div className='col-12 col-md-6 text-white'>
+					<div className='d-flex'>
+						<div className='text-white'>
 							<h1 className='headline mb-5'>Explore Marvel</h1>
 							<p className='h3'>
 								Find an old favorite comic or find a new one!
 							</p>
 						</div>
-						<div className='col-12 col-md-6 bg-white text-dark p-4 card'>
-							<SignIn />
-						</div>
+						<SignIn />
 					</div>
 				</div>
 			</section>
