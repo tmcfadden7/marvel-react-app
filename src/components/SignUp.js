@@ -6,15 +6,20 @@ import {
 	updateProfile,
 } from 'firebase/auth';
 import { db } from '../firebase.config';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
 		password: '',
+		favCharacter: '',
+		favComic: '',
 	});
 
-	const { name, email, password } = formData;
+	const { name, email, about, favCharacter, favComic, password } = formData;
+
+	const navigate = useNavigate();
 
 	const onChange = (e) => {
 		setFormData((prevState) => ({
@@ -53,7 +58,11 @@ const SignUp = () => {
 				name: '',
 				email: '',
 				password: '',
+				favCharacter: '',
+				favComic: '',
 			});
+
+			navigate('/');
 		} catch (error) {
 			console.log('ERROR: ', error);
 		}
@@ -61,8 +70,11 @@ const SignUp = () => {
 	return (
 		<section className='sign-up-container'>
 			<div className='grid'>
-				<div className='sign-up-form bg-white text-dark m-4 p-5'>
-					<h1 className='h3'>Create a free account</h1>
+				<div className='sign-up-form bg-white text-dark mx-md-5 p-3 p-md-5'>
+					<h1 className='h2'>Create a free account</h1>
+					<p className='text-muted'>
+						Become a member and start exploring the Marvel universe!
+					</p>
 					<form onSubmit={onSubmit}>
 						<div className='mb-3'>
 							<input
@@ -87,7 +99,6 @@ const SignUp = () => {
 								We'll never share your email with anyone else.
 							</div>
 						</div>
-
 						<div className='mb-3'>
 							<input
 								type='password'
@@ -98,6 +109,27 @@ const SignUp = () => {
 								onChange={onChange}
 							/>
 						</div>
+						<div className='mb-3'>
+							<input
+								type='text'
+								className='form-control'
+								id='favCharacter'
+								placeholder='Who is your favorite character'
+								value={favCharacter}
+								onChange={onChange}
+							/>
+						</div>
+						<div className='mb-3'>
+							<input
+								type='text'
+								className='form-control'
+								id='favComic'
+								placeholder='What is your favorite comic'
+								value={favComic}
+								onChange={onChange}
+							/>
+						</div>
+
 						<button className='btn btn-primary'>Submit</button>
 					</form>
 				</div>

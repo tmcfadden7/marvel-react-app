@@ -89,6 +89,9 @@ img {
 .sign-up-container {
 	background-color: #fff;
 	height: 100%;
+	.grid {
+		gap: 0;
+	}
 	.sign-up-img {
 		background-image: url('./assets/marvel-banner.jpg');
 
