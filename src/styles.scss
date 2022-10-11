@@ -2,9 +2,17 @@ body {
 	font-family: 'Open-sans', serif, 'Helvetica';
 	line-height: 1.8rem;
 	letter-spacing: 0.18rem;
+	height: 100%;
+	margin: 0;
+}
+html {
+	height: 100%;
+	margin: 0;
 }
 #root {
 	background-color: #e62429;
+	height: 100%;
+	margin: 0;
 }
 
 p,
@@ -78,7 +86,36 @@ img {
 	align-items: center;
 	height: 100%;
 }
+.sign-up-container {
+	background-color: #fff;
+	height: 100%;
+	.sign-up-img {
+		background-image: url('./assets/marvel-banner.jpg');
 
+		/* Full height */
+		height: 100%;
+
+		/* Center and scale the image nicely */
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	.sign-up-form {
+		input {
+			border-radius: 0;
+			border: 0;
+			border-bottom: 1px #b4becb solid;
+			padding: 3px;
+		}
+		input:focus {
+			border-color: none;
+			box-shadow: none;
+		}
+		.email-help {
+			font-size: 14px;
+		}
+	}
+}
 .char-grid-container,
 .comic-grid-container,
 .showcase-container,
@@ -86,6 +123,7 @@ img {
 .slider-container,
 .profile-container {
 	transform-style: preserve-3d;
+	padding-top: 100px;
 	.grid {
 		overflow: visible;
 		grid-template-columns: 55% auto;

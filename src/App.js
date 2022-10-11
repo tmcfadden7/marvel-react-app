@@ -81,7 +81,7 @@ function App() {
 	return (
 		<Router>
 			<NavBar />
-			<Header />
+			{/* <Header /> */}
 			<Routes>
 				<Route
 					path='/'
