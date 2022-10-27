@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-import Header from './components/Header';
 import CharacterGrid from './pages/characters/CharacterGrid';
 import './styles.scss';
 import ComicGrid from './pages/comics/ComicGrid';
@@ -11,6 +10,7 @@ import SignUp from './components/SignUp';
 import Profile from './pages/Profile';
 import PrivateRoute from './components/PrivateRoute';
 import NavBar from './components/NavBar';
+import Layout from './components/Layout';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -81,42 +81,43 @@ function App() {
 	return (
 		<Router>
 			<NavBar />
-			{/* <Header /> */}
 			<Routes>
-				<Route
-					path='/'
-					element={
-						<Home
-							characters={characters}
-							isLoading={isLoading}
-							getName={getCharName}
-						/>
-					}
-				/>
-				<Route path='/sign-up' element={<SignUp />} />
-				<Route path='/profile' element={<PrivateRoute />}>
-					<Route path='/profile' element={<Profile />} />
+				<Route element={<Layout />}>
+					<Route
+						path='/'
+						element={
+							<Home
+								characters={characters}
+								isLoading={isLoading}
+								getName={getCharName}
+							/>
+						}
+					/>
+					<Route path='/profile' element={<PrivateRoute />}>
+						<Route path='/profile' element={<Profile />} />
+					</Route>
+					<Route
+						path='/characters'
+						element={
+							<CharacterGrid
+								characters={characters}
+								isLoading={isLoading}
+								getName={getCharName}
+							/>
+						}
+					/>
+					<Route
+						path='/comics'
+						element={
+							<ComicGrid
+								comics={comics}
+								isLoading={isLoading}
+								getName={getComicName}
+							/>
+						}
+					/>
 				</Route>
-				<Route
-					path='/characters'
-					element={
-						<CharacterGrid
-							characters={characters}
-							isLoading={isLoading}
-							getName={getCharName}
-						/>
-					}
-				/>
-				<Route
-					path='/comics'
-					element={
-						<ComicGrid
-							comics={comics}
-							isLoading={isLoading}
-							getName={getComicName}
-						/>
-					}
-				/>
+				<Route path='/sign-up' element={<SignUp />} />
 			</Routes>
 		</Router>
 	);
