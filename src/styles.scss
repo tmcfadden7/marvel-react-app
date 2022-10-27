@@ -166,13 +166,17 @@ img {
 		}
 	}
 }
-
+.char-grid-container {
+	background-repeat: repeat;
+	background-size: contain;
+	background-attachment: fixed;
+}
 .showcase-container {
 	width: 100%;
 	height: 400px;
 	position: relative;
 	padding-top: 100px;
-	margin-bottom: 50px;
+	// margin-bottom: 50px;
 	// background-image: url('/marvel-banner.jpg');
 	// background-repeat: no-repeat;
 	// background-position: top;
