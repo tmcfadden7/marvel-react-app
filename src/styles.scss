@@ -223,9 +223,13 @@ img {
 	-webkit-transform: skewY(-3deg);
 }
 
-.home-container,
-.pagination-container {
+.home-container {
 	padding-top: 100px;
 	background-color: #e62429;
 	// background-color: #ccc;
+}
+
+.search-container,
+.pagination-container {
+	background-color: #e62429;
 }

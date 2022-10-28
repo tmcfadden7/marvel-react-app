@@ -18,7 +18,7 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [charName, setCharName] = useState('a');
 	const [comicName, setComicName] = useState('a');
-	const [fetchApi, setFetchApi] = useState(false);
+	const [fetchApi, setFetchApi] = useState(true);
 
 	function getCharName(letter) {
 		setCharName(letter);

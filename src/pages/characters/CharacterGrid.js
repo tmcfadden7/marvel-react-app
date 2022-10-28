@@ -1,13 +1,15 @@
 import Pagination from '../../components/Pagination';
 import Character from './Character';
 import MarvelBG from '../../assets/Marvel-Background.jpg';
+import Search from '../../components/Search';
 
 const CharacterGrid = ({ characters, isLoading, getName }) => {
 	return (
 		<>
-			{/* <Pagination getName={getName} /> */}
+			<Search getName={getName} />
+			<Pagination getName={getName} />
 			<section
-				className='char-grid-container mt-5'
+				className='char-grid-container'
 				style={{
 					backgroundImage: `linear-gradient(45deg,rgba(230, 36, 41, 0.25), rgba(230, 36, 41, .25)), url(${MarvelBG})`,
 				}}
