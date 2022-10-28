@@ -1,7 +1,7 @@
 import React from 'react';
+import HomeCharacterGrid from '../components/Home/HomeCharacterGrid';
 import RandomCharacter from '../components/RandomCharacter';
 import Slider from '../components/Slider';
-import CharacterGrid from './characters/CharacterGrid';
 
 const Home = ({ characters, isLoading, getName }) => {
 	console.log('characters: ', characters);
@@ -22,7 +22,7 @@ const Home = ({ characters, isLoading, getName }) => {
 					</form>
 				</div> */}
 				{/* <Slider characters={characters} /> */}
-				<CharacterGrid characters={characters} isLoading={isLoading} />
+				<HomeCharacterGrid characters={characters} isLoading={isLoading} />
 			</section>
 		</>
 	);
