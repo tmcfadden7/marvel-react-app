@@ -29,6 +29,8 @@ function App() {
 
 	useEffect(() => {
 		const fetchCharacters = async () => {
+			// const isCharNameSet =
+			// 	charName !== '' ? `?nameStartsWith=${charName}&` : '?';
 			try {
 				if (fetchApi) {
 					const response = await axios(
@@ -36,7 +38,9 @@ function App() {
 					);
 					const data = await response.data.data.results;
 					const filterData = await data.filter(
-						(char) => char.description !== ''
+						(char) =>
+							char.description !== '' &&
+							!char.thumbnail.path.includes('image_not_available')
 					);
 					setCharacters(filterData);
 					setIsLoading(false);
