@@ -28,9 +28,10 @@ function App() {
 	}
 
 	useEffect(() => {
+		let isMounted = true;
 		const fetchCharacters = async () => {
-			// const isCharNameSet =
-			// 	charName !== '' ? `?nameStartsWith=${charName}&` : '?';
+			const isCharNameSet =
+				charName !== '' ? `?nameStartsWith=${charName}&` : '?';
 			try {
 				if (fetchApi) {
 					const response = await axios(
@@ -42,8 +43,10 @@ function App() {
 							char.description !== '' &&
 							!char.thumbnail.path.includes('image_not_available')
 					);
-					setCharacters(filterData);
-					setIsLoading(false);
+					if (isMounted) {
+						setCharacters(filterData);
+						setIsLoading(false);
+					}
 				} else {
 					setCharacters(Data.characters);
 					setIsLoading(false);
@@ -56,6 +59,9 @@ function App() {
 			// console.log('characters: ', characters);
 		};
 		fetchCharacters();
+		return () => {
+			isMounted = false;
+		};
 	}, [charName, fetchApi]);
 
 	useEffect(() => {

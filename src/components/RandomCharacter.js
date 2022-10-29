@@ -1,14 +1,14 @@
-import React from 'react';
+import Spinner from './Spinner';
 
 const RandomCharacter = ({ characters, isLoading }) => {
 	console.log('randCHAR: ', characters);
 	const randomChar = 2;
 	return (
 		<section className='random-char-container pt-0'>
-			<div className='container mb-4'>
+			<div className='container mb-4 bg-black text-white'>
 				<div className='row'>
-					{isLoading ? (
-						<h2>Loading...</h2>
+					{isLoading || !characters ? (
+						<Spinner />
 					) : (
 						<>
 							<div className='col-4'>
