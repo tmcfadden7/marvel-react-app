@@ -18,7 +18,7 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [charName, setCharName] = useState('a');
 	const [comicName, setComicName] = useState('a');
-	const [fetchApi, setFetchApi] = useState(false);
+	const [fetchApi, setFetchApi] = useState(true);
 
 	function getCharName(letter) {
 		setCharName(letter);
@@ -28,20 +28,29 @@ function App() {
 	}
 
 	useEffect(() => {
+		let isMounted = true;
 		const fetchCharacters = async () => {
+			const isCharNameSet =
+				charName !== '' ? `?nameStartsWith=${charName}&` : '?';
 			try {
-				//	if (fetchApi) {
-				const response = await axios(
-					`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${charName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
-				);
-				const data = await response.data.data.results;
-				const filterData = await data.filter((char) => char.description !== '');
-				setCharacters(filterData);
-				setIsLoading(false);
-				//	} else {
-				// 	setCharacters(Data.characters);
-				// 	setIsLoading(false);
-				// }
+				if (fetchApi) {
+					const response = await axios(
+						`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${charName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+					);
+					const data = await response.data.data.results;
+					const filterData = await data.filter(
+						(char) =>
+							char.description !== '' &&
+							!char.thumbnail.path.includes('image_not_available')
+					);
+					if (isMounted) {
+						setCharacters(filterData);
+						setIsLoading(false);
+					}
+				} else {
+					setCharacters(Data.characters);
+					setIsLoading(false);
+				}
 			} catch (error) {
 				console.log(error);
 				setCharacters(Data.characters);
@@ -50,6 +59,9 @@ function App() {
 			// console.log('characters: ', characters);
 		};
 		fetchCharacters();
+		return () => {
+			isMounted = false;
+		};
 	}, [charName, fetchApi]);
 
 	useEffect(() => {

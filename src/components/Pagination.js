@@ -29,7 +29,7 @@ const Pagination = ({ getName }) => {
 	];
 
 	return (
-		<section className='pagination-container'>
+		<section className='pagination-container pb-5'>
 			<div className='container'>
 				<div className='d-flex flex-wrap justify-content-center'>
 					{alpha.map((bet) => {
