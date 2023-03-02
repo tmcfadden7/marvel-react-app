@@ -1,3 +1,4 @@
+import React from 'react';
 import MarvelBG from '../../assets/Marvel-Background.jpg';
 import HomeCharacter from './HomeCharacter';
 

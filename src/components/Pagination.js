@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Pagination = ({ getName }) => {
 	const alpha = [
 		'a',

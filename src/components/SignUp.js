@@ -67,6 +67,8 @@ const SignUp = () => {
 			console.log('ERROR: ', error);
 		}
 	};
+
+	console.log('MYDOC: ', doc);
 	return (
 		<section className='sign-up-container'>
 			<div className='grid'>

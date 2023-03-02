@@ -1,3 +1,4 @@
+import React from 'react';
 import Spinner from './Spinner';
 
 const RandomCharacter = ({ characters, isLoading }) => {
@@ -11,7 +12,7 @@ const RandomCharacter = ({ characters, isLoading }) => {
 						<Spinner />
 					) : (
 						<>
-							<div className='col-4'>
+							<div className='col-md-4'>
 								<div className='card'>
 									<div className='card-img'>
 										<img
@@ -27,9 +28,11 @@ const RandomCharacter = ({ characters, isLoading }) => {
 								</div>
 							</div>
 
-							<div className='col d-flex flex-column justify-content-center'>
+							<div className='col d-flex flex-column justify-content-center mt-5 mt-md-0'>
 								<h1 className='text-center'>{characters[randomChar].name}</h1>
-								<p>{characters[randomChar].description}</p>
+								<p className='text-center mt-3'>
+									{characters[randomChar].description}
+								</p>
 								{/* <div className='d-flex'>
 							{characters[randomChar].comics.items.splice(0, 3).map((comic) => {
 								return <p>{comic.name}</p>;
