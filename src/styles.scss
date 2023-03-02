@@ -24,9 +24,9 @@ img {
 	max-width: 100%;
 	max-height: 100%;
 }
-.container {
-	max-width: 1100px;
-}
+// .container {
+// 	max-width: 1100px;
+// }
 .loadingSpinnerContainer {
 	position: fixed;
 	top: 0;
@@ -57,7 +57,7 @@ img {
 	color: #d9534f !important;
 }
 .form-container {
-	width: 400px;
+	// width: 400px;
 	position: relative;
 	z-index: 1;
 	padding: 40px;
@@ -186,6 +186,12 @@ img {
 	height: 400px;
 	position: relative;
 	padding-top: 100px;
+	@media (max-width: 768px) {
+		padding-top: 50px;
+	}
+	.col {
+		z-index: 1;
+	}
 	// margin-bottom: 50px;
 	// background-image: url('/marvel-banner.jpg');
 	// background-repeat: no-repeat;

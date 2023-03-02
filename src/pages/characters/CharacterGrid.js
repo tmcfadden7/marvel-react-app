@@ -1,3 +1,4 @@
+import React from 'react';
 import Pagination from '../../components/Pagination';
 import Character from './Character';
 import MarvelBG from '../../assets/Marvel-Background.jpg';

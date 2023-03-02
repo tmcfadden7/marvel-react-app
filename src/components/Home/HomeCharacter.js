@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from '../../assets/marvel-logo.jpg';
 
 const HomeCharacter = ({ name, thumbnail, isLoading }) => {
