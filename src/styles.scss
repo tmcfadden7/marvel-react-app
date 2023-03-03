@@ -126,7 +126,8 @@ img {
 .slider-container,
 .profile-container,
 .random-char-container,
-.home-char-grid-container {
+.home-char-grid-container,
+.home-comic-grid-container {
 	transform-style: preserve-3d;
 	padding-top: 100px;
 	.grid {
@@ -154,12 +155,14 @@ img {
 	.card:hover {
 		color: #000;
 		box-shadow: 0 0 15px rgba(33, 33, 33, 0.8);
-		.char-name {
+		.char-name,
+		.comic-title {
 			border-bottom-color: #000;
 			background-color: #e62429;
 			z-index: 1;
 		}
-		.char-name h1 {
+		.char-name h1,
+		.comic-title h1 {
 			// font-size: 3rem;
 			font-weight: 900;
 		}
@@ -169,10 +172,15 @@ img {
 	}
 }
 .char-grid-container,
-.home-char-grid-container {
+.home-char-grid-container,
+.home-comic-grid-container {
 	background-repeat: repeat;
 	background-size: contain;
 	background-attachment: fixed;
+}
+.comic-title {
+	border-bottom: 5px #e62429 solid;
+	min-height: 330px;
 }
 
 .random-char-container .container {
@@ -210,7 +218,8 @@ img {
 		background-size: cover;
 		background-repeat: no-repeat;
 	}
-	.char-name {
+	.char-name,
+	.comic-title {
 		border-top: 5px #e62429 solid;
 		border-bottom: none;
 		min-height: fit-content;

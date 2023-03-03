@@ -33,7 +33,7 @@ function App() {
 			const isCharNameSet =
 				charName !== '' ? `?nameStartsWith=${charName}&` : '?';
 			try {
-				if (fetchApi) {
+				if (fetchApi && charName) {
 					const response = await axios(
 						`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${charName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
 					);
@@ -69,7 +69,7 @@ function App() {
 			try {
 				if (fetchApi) {
 					const response = await axios(
-						`http://gateway.marvel.com/v1/public/comics?titleStartsWith=${comicName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+						`http://gateway.marvel.com/v1/public/comics?titleStartsWith=${comicName}&limit=50&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
 					);
 					const data = await response.data.data.results;
 					const filterData = data.filter((comic) => comic.description);
@@ -77,19 +77,21 @@ function App() {
 					setIsLoading(false);
 				} else {
 					// use placeholder data
+					setComics(Data.characters);
+					setIsLoading(false);
 				}
 			} catch (error) {
 				console.log('COMICS', error);
-				setCharacters(Data.comics);
+				setComics(Data.comics);
 				setIsLoading(false);
 			}
 		};
 		fetchComics();
-		// console.log('COMICS: ', comics);
 	}, [comicName, fetchApi]);
 
 	if (!characters) return;
 	if (!comics) return;
+	console.log('COMICS: ', comics);
 	return (
 		<Router>
 			<NavBar />
@@ -100,6 +102,7 @@ function App() {
 						element={
 							<Home
 								characters={characters}
+								comics={comics}
 								isLoading={isLoading}
 								getName={getCharName}
 							/>
