@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../assets/marvel-logo.jpg';
 
-const Character = ({ name, thumbnail, isLoading }) => {
+const HomeCharacter = ({ name, thumbnail, isLoading }) => {
 	let noImg = thumbnail.path.includes('.jpg')
 		? thumbnail.path
 		: thumbnail.path + '.' + thumbnail.extension;
@@ -22,4 +22,4 @@ const Character = ({ name, thumbnail, isLoading }) => {
 	);
 };
 
-export default Character;
+export default HomeCharacter;

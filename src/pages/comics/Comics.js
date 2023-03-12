@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from '../../../src/marvel-comics.png';
 
 const Comics = ({ title, thumbnail, id }) => {
