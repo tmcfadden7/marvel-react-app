@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import MarvelBG from '../../assets/Marvel-Background.jpg';
 import HomeCharacter from './HomeCharacter';
 
@@ -14,13 +16,25 @@ const HomeCharacterGrid = ({ characters, isLoading }) => {
 				{isLoading ? (
 					<h2>Loading...</h2>
 				) : (
-					<div className='row justify-content-around'>
-						{characters.map((character) => {
-							return (
-								<HomeCharacter key={character.id} isLoading {...character} />
-							);
-						})}
-					</div>
+					<>
+						<div className='row justify-content-around'>
+							{characters.map((character) => {
+								return (
+									<HomeCharacter key={character.id} isLoading {...character} />
+								);
+							})}
+						</div>
+						<div className='d-flex justify-content-center'>
+							<Link to='/characters'>
+								<Button
+									variant='light'
+									className='fs-4 text rounded-pill p-3 border border-3 border-dark'
+								>
+									See more characters
+								</Button>
+							</Link>
+						</div>
+					</>
 				)}
 			</div>
 		</section>

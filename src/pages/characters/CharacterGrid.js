@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import Pagination from '../../components/Pagination';
 import Character from './Character';
 import MarvelBG from '../../assets/Marvel-Background.jpg';
 import Search from '../../components/Search';
 
 const CharacterGrid = ({ characters, isLoading, getName }) => {
+	useLayoutEffect(() => {
+		window.scrollTo(0, 0);
+	});
 	return (
 		<>
 			<Search getName={getName} />
