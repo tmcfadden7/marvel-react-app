@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import Pagination from '../../components/Pagination';
 import Comics from './Comics';
 import MarvelBG from '../../assets/Marvel-Background.jpg';
 
 const ComicGrid = ({ comics, isLoading, getName }) => {
 	// console.log('Works: ', comics);
+	useLayoutEffect(() => {
+		window.scrollTo(0, 0);
+	});
 	return (
 		<>
 			<Pagination getName={getName} />

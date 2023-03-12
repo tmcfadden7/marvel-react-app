@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import MarvelBG from '../../assets/Marvel-Background.jpg';
 import HomeComic from './HomeComic';
 
@@ -14,11 +16,23 @@ const HomeComicGrid = ({ comics, isLoading }) => {
 				{isLoading ? (
 					<h2>Loading...</h2>
 				) : (
-					<div className='row justify-content-around'>
-						{comics.map((comics) => {
-							return <HomeComic key={comics.id} isLoading {...comics} />;
-						})}
-					</div>
+					<>
+						<div className='row justify-content-around'>
+							{comics.map((comics) => {
+								return <HomeComic key={comics.id} isLoading {...comics} />;
+							})}
+						</div>
+						<div className='d-flex justify-content-center'>
+							<Link to='/comics'>
+								<Button
+									variant='light'
+									className='fs-4 text rounded-pill p-3 border border-3 border-dark'
+								>
+									See more comics
+								</Button>
+							</Link>
+						</div>
+					</>
 				)}
 			</div>
 		</section>
