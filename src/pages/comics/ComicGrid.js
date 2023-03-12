@@ -2,14 +2,16 @@ import React, { useLayoutEffect } from 'react';
 import Pagination from '../../components/Pagination';
 import Comics from './Comics';
 import MarvelBG from '../../assets/Marvel-Background.jpg';
+import Search from '../../components/Search';
 
 const ComicGrid = ({ comics, isLoading, getName }) => {
 	// console.log('Works: ', comics);
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
-	});
+	}, []);
 	return (
 		<>
+			<Search getName={getName} />
 			<Pagination getName={getName} />
 			<section
 				className='comic-grid-container'

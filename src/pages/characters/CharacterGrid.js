@@ -7,7 +7,7 @@ import Search from '../../components/Search';
 const CharacterGrid = ({ characters, isLoading, getName }) => {
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
-	});
+	}, []);
 	return (
 		<>
 			<Search getName={getName} />
