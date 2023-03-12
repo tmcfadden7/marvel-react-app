@@ -18,7 +18,7 @@ const HomeComicGrid = ({ comics, isLoading }) => {
 				) : (
 					<>
 						<div className='row justify-content-around'>
-							{comics.map((comics) => {
+							{comics.slice(0, 10).map((comics) => {
 								return <HomeComic key={comics.id} isLoading {...comics} />;
 							})}
 						</div>
