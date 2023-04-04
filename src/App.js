@@ -11,6 +11,8 @@ import Profile from './pages/Profile';
 import PrivateRoute from './components/PrivateRoute';
 import NavBar from './components/NavBar';
 import Layout from './components/Layout';
+import CharacterDetails from './pages/characters/CharacterDetails';
+import ComicDetails from './pages/comics/ComicDetails';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -133,6 +135,14 @@ function App() {
 					/>
 				</Route>
 				<Route path='/sign-up' element={<SignUp />} />
+				<Route
+					path='/characters/:characterId'
+					element={<CharacterDetails characters={characters} />}
+				/>
+				<Route
+					path='/comics/:comicId'
+					element={<ComicDetails comics={comics} />}
+				/>
 			</Routes>
 		</Router>
 	);

@@ -71,7 +71,7 @@ const SignUp = () => {
 	console.log('MYDOC: ', doc);
 	return (
 		<section className='sign-up-container'>
-			<div className='grid'>
+			<div className='d-flex h-100'>
 				<div className='sign-up-form bg-white text-dark mx-md-5 p-3 p-md-5'>
 					<h1 className='h2'>Create a free account</h1>
 					<p className='text-muted'>
@@ -135,7 +135,7 @@ const SignUp = () => {
 						<button className='btn btn-primary'>Submit</button>
 					</form>
 				</div>
-				<div className='sign-up-img'></div>
+				<div className='sign-up-img w-100'></div>
 			</div>
 		</section>
 	);
