@@ -13,6 +13,7 @@ import NavBar from './components/NavBar';
 import Layout from './components/Layout';
 import CharacterDetails from './pages/characters/CharacterDetails';
 import ComicDetails from './pages/comics/ComicDetails';
+import Footer from './components/Footer';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -144,6 +145,7 @@ function App() {
 					element={<ComicDetails comics={comics} />}
 				/>
 			</Routes>
+			<Footer />
 		</Router>
 	);
 }
