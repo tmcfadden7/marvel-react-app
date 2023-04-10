@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import Pagination from '../../components/Pagination';
-import Character from './Character';
+import Characters from './Characters';
 import MarvelBG from '../../assets/Marvel-Background.jpg';
 import Search from '../../components/Search';
 
@@ -25,7 +25,7 @@ const CharacterGrid = ({ characters, isLoading, getName }) => {
 						<div className='row justify-content-around'>
 							{characters.map((character) => {
 								return (
-									<Character key={character.id} isLoading {...character} />
+									<Characters key={character.id} isLoading {...character} />
 								);
 							})}
 						</div>
