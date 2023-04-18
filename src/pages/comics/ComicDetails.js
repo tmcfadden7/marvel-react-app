@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
 import MarvelBG from '../../assets/Marvel-Background2.jpg';
+import FavoriteStar from '../../components/FavoriteStar';
 
 const ComicDetails = ({ comics }) => {
 	let { comicId } = useParams();
@@ -19,8 +20,11 @@ const ComicDetails = ({ comics }) => {
 				comicInfo.map((comic, index) => {
 					return (
 						<>
-							<section key={index} className='comic-details-container'>
+							<section key={comic.id} className='comic-details-container'>
 								<div className='container'>
+									<div className='d-flex '>
+										<FavoriteStar favorite={comic} />
+									</div>
 									<div className='row'>
 										<div
 											className='comic-header col-lg-10 position-relative m-auto'
