@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { db } from '../firebase.config';
 import {
 	collection,
@@ -11,9 +11,15 @@ import {
 	onSnapshot,
 } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import SignIn from './SignIn';
+import { MdOutlineFavorite, MdOutlineFavoriteBorder } from 'react-icons/md';
 
 const FavoriteStar = ({ favorite }) => {
 	const [favoritesFromDb, setFavoritesFromDb] = useState([]);
+	const [show, setShow] = useState(false);
+
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 	const favoritesCollectionRef = collection(db, 'favorites');
 	const auth = getAuth();
 
@@ -44,7 +50,8 @@ const FavoriteStar = ({ favorite }) => {
 
 	const addToFavorites = async (favorite) => {
 		if (!auth.currentUser) {
-			alert('PLEASE SIGN UP/SIGNIN ');
+			// alert('PLEASE SIGN UP/SIGNIN ');
+			handleShow();
 			return;
 		} else if (favMatch.length === 0) {
 			try {
@@ -66,12 +73,42 @@ const FavoriteStar = ({ favorite }) => {
 	};
 
 	return (
-		<Button
-			variant={isFavSavedInDb ? 'danger' : 'warning'}
-			onClick={() => addToFavorites(favorite)}
-		>
-			{isFavSavedInDb ? 'Remove from ' : 'Add to '}favorites
-		</Button>
+		<>
+			<Button
+				variant={isFavSavedInDb ? 'dark' : 'light'}
+				onClick={() => addToFavorites(favorite)}
+			>
+				{isFavSavedInDb ? (
+					<MdOutlineFavorite
+						color='red'
+						size={25}
+						style={{ verticalAlign: 'bottom' }}
+					/>
+				) : (
+					<MdOutlineFavoriteBorder
+						color='red'
+						fill='red'
+						size={25}
+						style={{ verticalAlign: 'bottom' }}
+					/>
+				)}
+				{isFavSavedInDb ? ' Remove from ' : ' Add to '}
+				favorites
+			</Button>
+			<Modal show={show} onHide={handleClose}>
+				<Modal.Header closeButton>
+					<Modal.Title>Please sign in to add a favorite</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<SignIn />
+				</Modal.Body>
+				<Modal.Footer>
+					<Button variant='secondary' onClick={handleClose}>
+						Close
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		</>
 	);
 };
 

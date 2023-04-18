@@ -158,6 +158,7 @@ const SignIn = () => {
 								variant='light'
 								className='btn-outline-dark text-white'
 								style={{ background: '#e62429' }}
+								type='submit'
 							>
 								Sign in
 							</Button>
