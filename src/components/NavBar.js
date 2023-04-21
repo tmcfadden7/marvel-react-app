@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/marvel-logo.jpg';
+import { CgProfile } from 'react-icons/cg';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const NavBar = () => {
+	const [user, setUser] = useState(null);
+	const auth = getAuth();
+
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setUser(true);
+			} else {
+				setUser(false);
+			}
+		});
+	}, [auth]);
+
 	return (
 		<nav className='navbar sticky-top navbar-expand-lg navbar-light'>
 			<div className='container'>
@@ -38,6 +53,9 @@ const NavBar = () => {
 							</Link>
 						</li>
 					</ul>
+					<Link to={user ? '/profile' : '/signin'}>
+						<CgProfile color='#ffffff' size={25} />
+					</Link>
 				</div>
 			</div>
 		</nav>

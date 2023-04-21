@@ -13,7 +13,7 @@ import {
 	orderBy,
 	limit,
 } from 'firebase/firestore';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { db } from '../firebase.config';
 import { Button } from 'react-bootstrap';
 
@@ -26,6 +26,9 @@ const SignIn = () => {
 	const [userFavCharacter, setUserFavCharacter] = useState('');
 
 	const navigate = useNavigate();
+	const location = useLocation();
+
+	console.log('LOCATION', location);
 
 	const auth = getAuth();
 
@@ -90,7 +93,6 @@ const SignIn = () => {
 			setUser(currentUser);
 		});
 	}, [auth]);
-	console.log('MY USER: ', user);
 
 	const { email, password } = formData;
 
@@ -113,13 +115,17 @@ const SignIn = () => {
 				email: '',
 				password: '',
 			});
+			const page = location.pathname;
+			if (page.includes('signin')) {
+				navigate('/profile');
+			} else {
+				navigate('/');
+			}
 			console.log(userCredential);
 		} catch (error) {
 			console.log(error);
 		}
 	};
-
-	console.log('AUTH: ', auth);
 
 	return (
 		<>
@@ -176,7 +182,7 @@ const SignIn = () => {
 				</>
 			) : (
 				<>
-					<p>you are logged in already</p>
+					<p>you are logged in</p>
 				</>
 			)}
 		</>

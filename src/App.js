@@ -94,7 +94,7 @@ function App() {
 
 	if (!characters) return;
 	if (!comics) return;
-	console.log('COMICS: ', comics);
+	// console.log('COMICS: ', comics);
 	return (
 		<Router>
 			<NavBar />
