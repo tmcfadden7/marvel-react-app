@@ -2,28 +2,30 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
 import MarvelBG from '../assets/Marvel-Background2.jpg';
-import FavoriteStar from '../components/FavoriteStar';
+import FavoriteStar from './FavoriteStar';
 
-const ComicDetails = ({ comics }) => {
-	let { comicId } = useParams();
+const Details = ({ items }) => {
+	let { itemId } = useParams();
 
-	const getComicDetails = comics.filter((comic) => {
-		return Number(comic.id) === Number(comicId) ? comic : null;
+	console.log('IDD:', itemId);
+
+	const getItemDetails = items.filter((item) => {
+		return Number(item.id) === Number(itemId) ? item : null;
 	});
-	const comicInfo = getComicDetails.map((comic) => {
-		return comic;
+	const itemInfo = getItemDetails.map((item) => {
+		return item;
 	});
 
 	return (
 		<>
-			{comicInfo &&
-				comicInfo.map((comic, index) => {
+			{itemInfo &&
+				itemInfo.map((item, index) => {
 					return (
 						<>
-							<section key={comic.id} className='comic-details-container'>
+							<section key={item.id} className='comic-details-container'>
 								<div className='container'>
 									<div className='d-flex '>
-										<FavoriteStar favorite={comic} />
+										<FavoriteStar favorite={item} />
 									</div>
 									<div className='row'>
 										<div
@@ -33,11 +35,11 @@ const ComicDetails = ({ comics }) => {
 											}}
 										>
 											<div className='comic-header-text position-absolute px-2 px-sm-5 py-5 mx-auto text-white text-center rounded-5'>
-												<h1 className='h2 mb-3'>{comic.title}</h1>
-												{comic.description.length > 75 ? (
-													<p>{comic.description.substring(0, 75) + '...'}</p>
+												<h1 className='h2 mb-3'>{item.title}</h1>
+												{item.description.length > 75 ? (
+													<p>{item.description.substring(0, 75) + '...'}</p>
 												) : (
-													<p>{comic.description}</p>
+													<p>{item.description}</p>
 												)}
 											</div>
 										</div>
@@ -47,16 +49,16 @@ const ComicDetails = ({ comics }) => {
 											<div className='col-4'>
 												<Image
 													thumbnail
-													src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+													src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
 												/>
 											</div>
 											<div className='col-8 d-flex justify-content-center flex-column'>
-												<p>{comic.description}</p>
-												{comic.creators.items.length > 0 ? (
+												<p>{item.description}</p>
+												{item.creators && item.creators.items.length > 0 ? (
 													<>
 														<p>
 															Creators:
-															{comic.creators.items.map((creator) => {
+															{item.creators.items.map((creator) => {
 																return (
 																	<>
 																		{creator.name}-{creator.role},
@@ -71,11 +73,11 @@ const ComicDetails = ({ comics }) => {
 											</div>
 										</div>
 									</div>
-									{comic.images && (
+									{item.images && (
 										<div className='container mt-5'>
 											<div className='row'>
-												{comic.images.map((img) => {
-													if (img.path !== comic.thumbnail.path) {
+												{item.images.map((img) => {
+													if (img.path !== item.thumbnail.path) {
 														return (
 															<div className='col-4'>
 																<Image
@@ -98,4 +100,4 @@ const ComicDetails = ({ comics }) => {
 	);
 };
 
-export default ComicDetails;
+export default Details;

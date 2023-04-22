@@ -13,7 +13,7 @@ import NavBar from './components/NavBar';
 import Layout from './components/Layout';
 import CharacterDetails from './pages/characters/CharacterDetails';
 import Footer from './components/Footer';
-import Details from './pages/comics/Details';
+import ComicDetails from './pages/comics/ComicDetails';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -137,10 +137,13 @@ function App() {
 				</Route>
 				<Route path='/sign-up' element={<SignUp />} />
 				<Route
-					path='/characters/:characterId'
+					path='/characters/:itemId'
 					element={<CharacterDetails characters={characters} />}
 				/>
-				<Route path='/comics/:comicId' element={<Details comics={comics} />} />
+				<Route
+					path='/comics/:itemId'
+					element={<ComicDetails comics={comics} />}
+				/>
 			</Routes>
 			<Footer />
 		</Router>
