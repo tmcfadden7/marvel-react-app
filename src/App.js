@@ -12,8 +12,8 @@ import PrivateRoute from './components/PrivateRoute';
 import NavBar from './components/NavBar';
 import Layout from './components/Layout';
 import CharacterDetails from './pages/characters/CharacterDetails';
-import ComicDetails from './pages/comics/ComicDetails';
 import Footer from './components/Footer';
+import Details from './pages/comics/Details';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -140,10 +140,7 @@ function App() {
 					path='/characters/:characterId'
 					element={<CharacterDetails characters={characters} />}
 				/>
-				<Route
-					path='/comics/:comicId'
-					element={<ComicDetails comics={comics} />}
-				/>
+				<Route path='/comics/:comicId' element={<Details comics={comics} />} />
 			</Routes>
 			<Footer />
 		</Router>
