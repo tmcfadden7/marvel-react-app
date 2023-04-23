@@ -12,8 +12,8 @@ import PrivateRoute from './components/PrivateRoute';
 import NavBar from './components/NavBar';
 import Layout from './components/Layout';
 import CharacterDetails from './pages/characters/CharacterDetails';
-import ComicDetails from './pages/comics/ComicDetails';
 import Footer from './components/Footer';
+import ComicDetails from './pages/comics/ComicDetails';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -94,7 +94,7 @@ function App() {
 
 	if (!characters) return;
 	if (!comics) return;
-	console.log('COMICS: ', comics);
+	// console.log('COMICS: ', comics);
 	return (
 		<Router>
 			<NavBar />
@@ -137,11 +137,11 @@ function App() {
 				</Route>
 				<Route path='/sign-up' element={<SignUp />} />
 				<Route
-					path='/characters/:characterId'
+					path='/characters/:itemId'
 					element={<CharacterDetails characters={characters} />}
 				/>
 				<Route
-					path='/comics/:comicId'
+					path='/comics/:itemId'
 					element={<ComicDetails comics={comics} />}
 				/>
 			</Routes>
