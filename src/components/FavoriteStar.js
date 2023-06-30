@@ -20,13 +20,14 @@ const FavoriteStar = ({ favorite }) => {
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const favoritesCollectionRef = collection(db, 'favorites');
+	const whichFavorites = favorite.title ? 'favComics' : 'favCharacters';
+	const favoritesCollectionRef = collection(db, whichFavorites);
 	const auth = getAuth();
 
 	console.log('AUTH: ', auth);
 
 	useEffect(() => {
-		const q = query(collection(db, 'favorites'));
+		const q = query(collection(db, whichFavorites));
 		onSnapshot(q, (querySnapshot) => {
 			setFavoritesFromDb(
 				querySnapshot.docs.map((doc) => ({
@@ -56,7 +57,9 @@ const FavoriteStar = ({ favorite }) => {
 		} else if (favMatch.length === 0) {
 			try {
 				await addDoc(favoritesCollectionRef, {
-					name: favorite.title,
+					...(favorite.title
+						? { title: favorite.title }
+						: { name: favorite.name }),
 					itemId: favorite.id,
 					description: favorite.description,
 					image: favorite.thumbnail.path,

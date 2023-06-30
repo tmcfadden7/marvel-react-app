@@ -53,7 +53,7 @@ const NavBar = () => {
 							</Link>
 						</li>
 					</ul>
-					<Link to={user ? '/profile' : '/signin'}>
+					<Link to={user ? '/profile' : '/login'}>
 						<CgProfile color='#ffffff' size={25} />
 					</Link>
 				</div>
