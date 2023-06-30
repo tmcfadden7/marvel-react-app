@@ -14,6 +14,7 @@ import Layout from './components/Layout';
 import CharacterDetails from './pages/characters/CharacterDetails';
 import Footer from './components/Footer';
 import ComicDetails from './pages/comics/ComicDetails';
+import LogIn from './pages/LogIn';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -32,13 +33,15 @@ function App() {
 
 	useEffect(() => {
 		let isMounted = true;
+		const controller = new AbortController();
 		const fetchCharacters = async () => {
 			const isCharNameSet =
 				charName !== '' ? `?nameStartsWith=${charName}&` : '?';
 			try {
 				if (fetchApi && charName) {
 					const response = await axios(
-						`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${charName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+						`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${charName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`,
+						{ signal: controller.signal }
 					);
 					const data = await response.data.data.results;
 					const filterData = await data.filter(
@@ -64,15 +67,18 @@ function App() {
 		fetchCharacters();
 		return () => {
 			isMounted = false;
+			controller.abort();
 		};
 	}, [charName, fetchApi]);
 
 	useEffect(() => {
+		const controller = new AbortController();
 		const fetchComics = async () => {
 			try {
 				if (fetchApi) {
 					const response = await axios(
-						`http://gateway.marvel.com/v1/public/comics?titleStartsWith=${comicName}&limit=50&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+						`http://gateway.marvel.com/v1/public/comics?titleStartsWith=${comicName}&limit=50&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`,
+						{ signal: controller.signal }
 					);
 					const data = await response.data.data.results;
 					const filterData = data.filter((comic) => comic.description);
@@ -90,6 +96,10 @@ function App() {
 			}
 		};
 		fetchComics();
+
+		return () => {
+			controller.abort();
+		};
 	}, [comicName, fetchApi]);
 
 	if (!characters) return;
@@ -136,6 +146,10 @@ function App() {
 					/>
 				</Route>
 				<Route path='/sign-up' element={<SignUp />} />
+				<Route
+					path='/login'
+					element={<LogIn characters={characters} comics={comics} />}
+				/>
 				<Route
 					path='/characters/:itemId'
 					element={<CharacterDetails characters={characters} />}
