@@ -44,7 +44,7 @@ const Header = () => {
 								</Modal.Footer>
 							</Modal>
 						</div>
-						<div className='col col-md-6 col-lg-4 d-none d-md-block'>
+						<div className='col col-md-6 col-lg-4 d-none d-md-block rounded-5'>
 							<SignIn />
 						</div>
 					</div>

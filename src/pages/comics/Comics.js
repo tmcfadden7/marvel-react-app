@@ -6,7 +6,7 @@ const Comics = ({ title, thumbnail, id }) => {
 	let noImg = thumbnail.path + '.jpg';
 	noImg = !noImg.includes('image_not_available') ? noImg : logo;
 	const titleLength = (title) => {
-		if (title.length > 35) {
+		if (title?.length > 35) {
 			return 'h3';
 		} else {
 			return '';
