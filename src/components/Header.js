@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SignIn from './SignIn';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const Header = () => {
 	const [show, setShow] = useState(false);
+	const [user, setUser] = useState(null);
+
+	const auth = getAuth();
+
+	useEffect(() => {
+		onAuthStateChanged(auth, (currentUser) => {
+			setUser(currentUser);
+		});
+	}, [auth, setUser]);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -25,27 +35,40 @@ const Header = () => {
 									Learn More
 								</button>
 							</Link>
-							<Button
-								className='d-md-none btn-outline-light text-white ms-3 mt-3'
-								variant='light'
-								style={{ background: '#e62429' }}
-								onClick={handleShow}
-							>
-								Sign in/sign up
-							</Button>
-							<Modal show={show} onHide={handleClose}>
-								<Modal.Body className='px-0 px-sm-3'>
-									<SignIn />
-								</Modal.Body>
-								<Modal.Footer>
-									<Button variant='secondary' onClick={handleClose}>
-										Close
+							{!user && (
+								<>
+									<Button
+										className='d-md-none btn-outline-light text-white ms-3 mt-3'
+										variant='light'
+										style={{ background: '#e62429' }}
+										onClick={handleShow}
+									>
+										Sign in/sign up
 									</Button>
-								</Modal.Footer>
-							</Modal>
+									<Modal show={show} onHide={handleClose}>
+										<Modal.Body className='px-0 px-sm-3'>
+											<SignIn />
+										</Modal.Body>
+										<Modal.Footer>
+											<Button variant='secondary' onClick={handleClose}>
+												Close
+											</Button>
+										</Modal.Footer>
+									</Modal>
+								</>
+							)}
 						</div>
 						<div className='col col-md-6 col-lg-4 d-none d-md-block rounded-5'>
-							<SignIn />
+							{user ? (
+								<>
+									<h2 className='text-white display-5'>
+										Welcome back{' '}
+										<span className='text-capitalize'>{user.displayName}</span>!
+									</h2>
+								</>
+							) : (
+								<SignIn />
+							)}
 						</div>
 					</div>
 				</div>

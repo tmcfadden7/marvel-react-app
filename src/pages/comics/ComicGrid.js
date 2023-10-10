@@ -5,7 +5,6 @@ import MarvelBG from '../../assets/Marvel-Background.jpg';
 import Search from '../../components/Search';
 
 const ComicGrid = ({ comics, isLoading, getName }) => {
-	// console.log('Works: ', comics);
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);

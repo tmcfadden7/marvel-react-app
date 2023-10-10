@@ -1,19 +1,15 @@
 body {
 	font-family: 'Open Sans', serif, 'Helvetica';
 	line-height: 1.8rem;
-	// 	height: 100%;
 	margin: 0;
 	padding: 0;
 }
 html {
-	// height: 100%;
 	margin: 0;
 	padding: 0;
 }
 #root {
 	background-color: #e62429;
-	// height: 100%;
-	// height: auto;
 	margin: 0;
 	padding: 0;
 }
@@ -64,11 +60,9 @@ img {
 	color: #d9534f !important;
 }
 .form-container {
-	// width: 400px;
 	position: relative;
 	z-index: 1;
 	padding: 40px;
-	// border-radius: 10px;
 	background-size: cover;
 	background-repeat: no-repeat;
 	input {
@@ -121,11 +115,7 @@ img {
 .comic-grid-container,
 .showcase-container,
 .fav-character-container,
-// .slider-container,
-// .profile-container,
-// .random-char-container,
 .home-char-grid-container,
-// .comic-details-container,
 .home-comic-grid-container {
 	transform-style: preserve-3d;
 	padding-top: 100px;
@@ -137,7 +127,6 @@ img {
 	.card {
 		color: #fff;
 		background-color: #202020;
-		// transition: 0.3s;
 		overflow: hidden;
 		cursor: pointer;
 	}
@@ -179,7 +168,6 @@ img {
 	.card {
 		color: #fff;
 		background-color: #202020;
-		// transition: 0.3s;
 		overflow: hidden;
 		cursor: pointer;
 	}
