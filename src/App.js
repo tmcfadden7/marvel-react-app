@@ -62,7 +62,6 @@ function App() {
 				setCharacters(Data.characters);
 				setIsLoading(false);
 			}
-			// console.log('characters: ', characters);
 		};
 		fetchCharacters();
 		return () => {
@@ -104,7 +103,6 @@ function App() {
 
 	if (!characters) return;
 	if (!comics) return;
-	// console.log('COMICS: ', comics);
 	return (
 		<Router>
 			<NavBar />

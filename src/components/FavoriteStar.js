@@ -51,7 +51,6 @@ const FavoriteStar = ({ favorite }) => {
 
 	const addToFavorites = async (favorite) => {
 		if (!auth.currentUser) {
-			// alert('PLEASE SIGN UP/SIGNIN ');
 			handleShow();
 			return;
 		} else if (favMatch.length === 0) {

@@ -11,32 +11,17 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { Link, useNavigate } from 'react-router-dom';
-import { CgProfile } from 'react-icons/cg';
 import {
-	TbSquareRoundedLetterM,
-	TbHexagonLetterM,
 	TbLetterM,
 } from 'react-icons/tb';
 import { Button } from 'react-bootstrap';
 import Slider from '../components/Slider';
 
 const Profile = () => {
-	const [user, setUser] = useState(null);
 	const [favCharacterFromDb, setFavCharacterFromDb] = useState(null);
 	const [favComicFromDb, setFavComicFromDb] = useState(null);
 	const auth = getAuth();
 	const navigate = useNavigate();
-
-	// if (auth.currentUser) {
-	// 	setUser(auth.currentUser);
-	// }
-	// IS THIS WORKING?
-	// useEffect(() => {
-	// 	setUser(auth.currentUser);
-	// 	onAuthStateChanged(auth, (currentUser) => {
-	// 		setUser(currentUser);
-	// 	});
-	// }, [auth]);
 
 	useEffect(() => {
 		const characterQuery = query(collection(db, 'favCharacters'));
@@ -59,10 +44,6 @@ const Profile = () => {
 		});
 	}, []);
 
-	console.log('FAVSCHAR:', favCharacterFromDb);
-	console.log('FAVSCOMIC:', favComicFromDb);
-	console.log('USER: ', user);
-
 	const logOut = () => {
 		if (auth.currentUser) {
 			auth.signOut();
@@ -75,7 +56,6 @@ const Profile = () => {
 				<div className='profile px-md-5'>
 					<div
 						className='avatar bg-light rounded-5'
-						// style={{ marginTop: '-50px' }}
 					>
 						<TbLetterM
 							size={125}
@@ -96,8 +76,6 @@ const Profile = () => {
 							<p className='display-6'>Created:</p>
 							<p className='h3'>{auth?.currentUser.metadata.creationTime}</p>
 						</div>
-						{/* </div>
-					<div className='row mt-5'> */}
 						<div className='col-12 col-md-6 mt-5'>
 							<p className='display-6'>About:</p>
 							<p className='h3'>ADD ABOUT TO FIREBASE</p>
