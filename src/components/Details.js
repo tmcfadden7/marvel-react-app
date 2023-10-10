@@ -18,7 +18,7 @@ const Details = ({ items }) => {
 	return (
 		<>
 			{itemInfo &&
-				itemInfo.map((item, index) => {
+				itemInfo.map((item) => {
 					return (
 						<>
 							<section key={item.id} className='comic-details-container'>

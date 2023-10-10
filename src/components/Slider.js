@@ -29,8 +29,6 @@ const Slider = ({ characters, linkPath }) => {
 						spaceBetween: 20,
 					},
 				}}
-				// centeredSlides={true}
-				// centeredSlidesBounds={true}
 				slidesOffsetBefore={0}
 				rewind={true}
 				navigation
@@ -38,15 +36,12 @@ const Slider = ({ characters, linkPath }) => {
 				scrollbar={{ draggable: true }}
 				onSwiper={(swiper) => console.log(swiper)}
 				onSlideChange={() => console.log('slide change')}
-				// loop={true}
-				// style={{ transform: 'translate3d(676.875px, 0px, 0px)' }}
 			>
 				{characters.map((character) => {
 					return (
 						<SwiperSlide
 							key={character.id}
 							style={{
-								// transform: 'translate3d(125px, 0px, 0px)',
 								justifyContent: 'center',
 							}}
 						>
