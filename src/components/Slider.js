@@ -7,8 +7,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/a11y';
 import { Link } from 'react-router-dom';
+import CardHeader from './ProductGridSection/Card/CardHeader';
+import CardImage from './ProductGridSection/Card/CardImage';
 
-const Slider = ({ characters, linkPath }) => {
+const Slider = ({ products, linkPath }) => {
 	return (
 		<section className='slider-container my-3'>
 			<Swiper
@@ -37,31 +39,24 @@ const Slider = ({ characters, linkPath }) => {
 				onSwiper={(swiper) => console.log(swiper)}
 				onSlideChange={() => console.log('slide change')}
 			>
-				{characters.map((character) => {
+				{products.map((product) => {
 					return (
 						<SwiperSlide
-							key={character.id}
+							key={product.id}
 							style={{
 								justifyContent: 'center',
 							}}
 						>
 							<Link
-								to={`/${linkPath}/${character.itemId}`}
+								to={`/${linkPath}/${product.itemId}`}
 								className='text-decoration-none'
 							>
 								<div className='card'>
-									<div className='char-name d-flex justify-content-center align-items-center py-5'>
-										<h1 className='text-center'>
-											{character.name || character.title}
-										</h1>
-									</div>
-									<div className='card-img'>
-										<img
-											src={character.image + '.' + character.imageExt}
-											alt={character.name || character.title}
-											className='img-fluid p-0'
-										/>
-									</div>
+									<CardHeader title={product.title || product.name} />
+									<CardImage
+										title={product.title || product.name}
+										thumbnail={`${product.image}.${product.imageExt}`}
+									/>
 								</div>
 							</Link>
 						</SwiperSlide>

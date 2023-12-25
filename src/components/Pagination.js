@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Pagination = ({ getName }) => {
+const Pagination = ({ setProduct }) => {
 	const alpha = [
 		'a',
 		'b',
@@ -38,7 +38,7 @@ const Pagination = ({ getName }) => {
 						return (
 							<button
 								key={bet}
-								onClick={(e) => getName(e.target.innerHTML)}
+								onClick={(e) => setProduct(e.target.innerHTML)}
 								className='btn btn-dark btn-pagination border border-danger'
 							>
 								{bet}

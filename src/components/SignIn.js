@@ -28,7 +28,7 @@ const SignIn = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	console.log('LOCATION', location);
+	// console.log('LOCATION', location);
 
 	const auth = getAuth();
 
@@ -57,11 +57,8 @@ const SignIn = () => {
 				});
 
 				fav.forEach((char) => {
-
 					if (user.email === char.data.email) {
-						setUserFavCharacter(char.favCharacter);
-					} else {
-						console.log('NOT WORKING');
+						setUserFavCharacter(char.data.favCharacter);
 					}
 				});
 			} catch (e) {
@@ -70,20 +67,25 @@ const SignIn = () => {
 		};
 
 		fetchFavCharacters();
+		return () => {
+			setUserFavCharacter('');
+		};
 	}, [user]);
 
-	useEffect(() => {
-		const favMarvelCharacter = async () => {
-			const response = await axios(
-				`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${userFavCharacter}&limit=5&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
-			);
-			const data = await response.data.data.results;
+	// useEffect(() => {
+	// 	const favMarvelCharacter = async () => {
+	// 		if (userFavCharacter) {
+	// 			const response = await axios(
+	// 				`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${userFavCharacter}&limit=5&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
+	// 			);
+	// 			const data = await response.data.data.results;
 
-			console.log(data);
-		};
+	// 			console.log('this', data);
+	// 		}
+	// 	};
 
-		favMarvelCharacter();
-	}, [userFavCharacter]);
+	// 	favMarvelCharacter();
+	// }, [userFavCharacter]);
 
 	// IS THIS WORKING?
 	useEffect(() => {

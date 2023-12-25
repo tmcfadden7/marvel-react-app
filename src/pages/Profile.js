@@ -11,9 +11,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-	TbLetterM,
-} from 'react-icons/tb';
+import { TbLetterM } from 'react-icons/tb';
 import { Button } from 'react-bootstrap';
 import Slider from '../components/Slider';
 
@@ -54,9 +52,7 @@ const Profile = () => {
 		<section className='profile-container mt-5 mx-sm-5 bg-light rounded-5'>
 			<div className='container mt-5 text-center'>
 				<div className='profile px-md-5'>
-					<div
-						className='avatar bg-light rounded-5'
-					>
+					<div className='avatar bg-light rounded-5'>
 						<TbLetterM
 							size={125}
 							color='#fff'
@@ -88,7 +84,7 @@ const Profile = () => {
 					<div className='row justify-content-around mt-5 p-0'>
 						<p className='display-6'>Your Favorite Characters</p>
 						{favCharacterFromDb && (
-							<Slider characters={favCharacterFromDb} linkPath={'characters'} />
+							<Slider products={favCharacterFromDb} linkPath={'characters'} />
 						)}
 						<div className='d-flex justify-content-center'>
 							<Link to='/characters'>
@@ -106,7 +102,7 @@ const Profile = () => {
 						<p className='display-6'>Your Favorite Comics</p>
 
 						{favComicFromDb && (
-							<Slider characters={favComicFromDb} linkPath={'comics'} />
+							<Slider products={favComicFromDb} linkPath={'comics'} />
 						)}
 						<div className='d-flex justify-content-center'>
 							<Link to='/comics'>

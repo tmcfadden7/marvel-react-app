@@ -111,12 +111,11 @@ img {
 		text-transform: uppercase;
 	}
 }
-.char-grid-container,
-.comic-grid-container,
+.product-detail-section-container,
+.product-grid-section,
 .showcase-container,
 .fav-character-container,
-.home-char-grid-container,
-.home-comic-grid-container {
+.product-grid-section {
 	transform-style: preserve-3d;
 	padding-top: 100px;
 	.grid {
@@ -139,19 +138,19 @@ img {
 		display: flex;
 		transition: 0.4s;
 		overflow: hidden;
-		height: 325px;
+		height: 300px;
 	}
 	.card:hover {
 		color: #000;
 		box-shadow: 0 0 15px rgba(33, 33, 33, 0.8);
 		.char-name,
-		.comic-title {
+		.product-title {
 			border-bottom-color: #000;
 			background-color: #e62429;
 			z-index: 1;
 		}
 		.char-name h1,
-		.comic-title h1 {
+		.product-title h1 {
 			font-weight: 900;
 		}
 		.card-img {
@@ -189,13 +188,13 @@ img {
 		color: #000;
 		box-shadow: 0 0 15px rgba(33, 33, 33, 0.8);
 		.char-name,
-		.comic-title {
+		.product-title {
 			border-bottom-color: #000;
 			background-color: #e62429;
 			z-index: 1;
 		}
 		.char-name h1,
-		.comic-title h1 {
+		.product-title h1 {
 			font-weight: 900;
 		}
 		.card-img {
@@ -264,17 +263,19 @@ img {
 	max-height: 640px;
 }
 
-.char-grid-container,
-.comic-grid-container,
-.home-char-grid-container,
-.home-comic-grid-container {
+.product-detail-section-container,
+.product-grid-section,
+.product-grid-section {
 	background-repeat: repeat;
 	background-size: contain;
 	background-attachment: fixed;
 }
-.comic-title {
+.product-title {
 	border-bottom: 5px #e62429 solid;
-	min-height: 330px;
+	@media (max-width: 576px) {
+		min-height: 100px;
+	}
+	min-height: 250px;
 }
 
 .random-char-container .container {
@@ -310,7 +311,7 @@ img {
 		background-repeat: no-repeat;
 	}
 	.char-name,
-	.comic-title {
+	.product-title {
 		border-top: 5px #e62429 solid;
 		border-bottom: none;
 		min-height: fit-content;
@@ -324,13 +325,13 @@ img {
 		}
 	}
 }
-.comic-details-container {
+.product-details-container {
 	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
 		url('../src/assets/Marvel-Background2.jpg') no-repeat;
 	background-size: cover;
 }
-.comic-details-container {
-	.comic-header-text {
+.product-details-container {
+	.product-details-header {
 		background: rgba(0, 0, 0, 0.6);
 	}
 }
@@ -355,4 +356,11 @@ img {
 .search-container,
 .pagination-container {
 	background-color: #e62429;
+}
+
+.search-container input {
+	@media (min-width: 768px) {
+		width: 50%;
+	}
+	width: 100%;
 }
