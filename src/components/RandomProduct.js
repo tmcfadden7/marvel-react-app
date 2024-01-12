@@ -26,7 +26,7 @@ const RandomProduct = ({ product, productType, isLoading }) => {
 						to={`/${productType}/${product[randomProduct]?.id}`}
 						className='text-decoration-none'
 					>
-						<div className='random-product-card-container container my-0 p-5 bg-black'>
+						<div className='random-product-card-container container my-0 px-5 pt-5 pb-0 bg-black'>
 							<div className='row'>
 								<div className='col-md-4'>
 									{isLoading ? (
@@ -74,6 +74,9 @@ const RandomProduct = ({ product, productType, isLoading }) => {
 									)}
 								</div>
 							</div>
+							<p className='fs-6 text text-center pt-5 pb-2'>
+								Data provided by Marvel. © 2014 Marvel
+							</p>
 						</div>
 					</Link>
 				</>

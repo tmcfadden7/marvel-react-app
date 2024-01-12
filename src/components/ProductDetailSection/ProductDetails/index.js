@@ -35,6 +35,9 @@ const ProductDetails = ({ content }) => {
 								thumbnail
 								src={`${content.thumbnail.path}.${content.thumbnail.extension}`}
 							/>
+							<p className='fs-6 text text-center pt-2'>
+								Data provided by Marvel. © 2014 Marvel
+							</p>
 						</div>
 					</div>
 				</div>
