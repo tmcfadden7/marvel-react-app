@@ -1,7 +1,6 @@
 import React from 'react';
 import SignIn from '../components/SignIn';
-import RandomCharacter from '../components/RandomCharacter';
-import RandomComic from '../components/RandomComic';
+import RandomProduct from '../components/RandomProduct';
 import characters1 from '../assets/Marvel-Characters-Placeholder1.jpg';
 import characters2 from '../assets/Marvel-Characters-Placeholder2.jpg';
 import characters3 from '../assets/Marvel-Characters-Placeholder3.jpg';
@@ -30,12 +29,12 @@ const LogIn = ({ characters, comics }) => {
 				</div>
 				<div className='row mt-5'>
 					<div className='col'>
-						<RandomCharacter characters={characters} />
+						<RandomProduct product={characters} productType={'characters'} />
 					</div>
 				</div>
 				<div className='row'>
 					<div className='col'>
-						<RandomComic comics={comics} />
+						<RandomProduct product={comics} productType={'comics'} />
 					</div>
 				</div>
 			</section>

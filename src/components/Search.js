@@ -1,16 +1,14 @@
-import React from 'react';
-
-const Search = ({ getName }) => {
+const Search = ({ setProduct, productType }) => {
 	return (
-		<section className='search-container pt-5'>
-			<div className='container'>
+		<section className='search-container'>
+			<div className='container '>
 				<form className='d-flex'>
 					<input
-						className='form-control m-5 border border-dark border-3'
+						className='form-control my-5 mx-auto border border-dark border-3'
 						type='search'
-						placeholder='Search Character'
-						onKeyUp={(e) => {
-							e.target.value ? getName(e.target.value) : getName('a');
+						placeholder={`Search ${productType}`}
+						onChange={(e) => {
+							e.target.value ? setProduct(e.target.value) : setProduct('a');
 						}}
 					/>
 				</form>
