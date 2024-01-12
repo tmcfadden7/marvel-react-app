@@ -32,7 +32,7 @@ function App() {
 				if (fetchApi && characterName) {
 					setIsCharactersLoading(true);
 					const response = await axios(
-						`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${characterName}&limit=50&ts=1&apikey=${process.env.REACT_APP_MARVEL_API_KEY}&hash=${process.env.REACT_APP_MARVEL_API_HASH_KEY}`,
+						`https://gateway.marvel.com/v1/public/characters?nameStartsWith=${characterName}&limit=50&ts=1&apikey=${process.env.REACT_APP_MARVEL_API_KEY}&hash=${process.env.REACT_APP_MARVEL_API_HASH_KEY}`,
 						{ signal: controller.signal }
 					);
 					const data = await response.data.data.results;
@@ -69,7 +69,7 @@ function App() {
 				if (fetchApi && comicTitle) {
 					setIsComicsLoading(true);
 					const response = await axios(
-						`http://gateway.marvel.com/v1/public/comics?titleStartsWith=${comicTitle}&limit=50&ts=1&apikey=${process.env.REACT_APP_MARVEL_API_KEY}&hash=${process.env.REACT_APP_MARVEL_API_HASH_KEY}`,
+						`https://gateway.marvel.com/v1/public/comics?titleStartsWith=${comicTitle}&limit=50&ts=1&apikey=${process.env.REACT_APP_MARVEL_API_KEY}&hash=${process.env.REACT_APP_MARVEL_API_HASH_KEY}`,
 						{ signal: controller.signal }
 					);
 					const data = await response.data.data.results;
