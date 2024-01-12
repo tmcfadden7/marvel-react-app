@@ -11,36 +11,34 @@ const Home = ({
 	setComicTitle,
 }) => {
 	return (
-		<>
-			<section className='home-container'>
-				<RandomProduct
-					product={characters}
-					productType={'characters'}
-					isLoading={isCharLoading}
-				/>
-				<CharacterSection
-					isCharLoading={isCharLoading}
-					characters={characters}
-					productType={'characters'}
-					seeMoreText={'See more characters'}
-					seeMoreLink={'/characters'}
-					setProduct={setCharacterName}
-				/>
-				<RandomProduct
-					product={comics}
-					productType={'comics'}
-					isLoading={isComLoading}
-				/>
-				<ComicSection
-					comics={comics}
-					isComLoading={isComLoading}
-					productType={'comics'}
-					seeMoreText={'See more comics'}
-					seeMoreLink={'/comics'}
-					setProduct={setComicTitle}
-				/>
-			</section>
-		</>
+		<section className='home-container'>
+			<RandomProduct
+				product={characters}
+				productType={'characters'}
+				isLoading={isCharLoading}
+			/>
+			<CharacterSection
+				isCharLoading={isCharLoading}
+				characters={characters.slice(0, 8)}
+				productType={'characters'}
+				seeMoreText={'See more characters'}
+				seeMoreLink={'/characters'}
+				setProduct={setCharacterName}
+			/>
+			<RandomProduct
+				product={comics}
+				productType={'comics'}
+				isLoading={isComLoading}
+			/>
+			<ComicSection
+				comics={comics.slice(0, 8)}
+				isComLoading={isComLoading}
+				productType={'comics'}
+				seeMoreText={'See more comics'}
+				seeMoreLink={'/comics'}
+				setProduct={setComicTitle}
+			/>
+		</section>
 	);
 };
 

@@ -7,6 +7,7 @@ import {
 } from 'firebase/auth';
 import { db } from '../firebase.config';
 import { useNavigate } from 'react-router-dom';
+import MarvelBG from '../../src/assets/Marvel-Background.jpg';
 
 const SignUp = () => {
 	const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const SignUp = () => {
 		favComic: '',
 	});
 
-	const { name, email, about, favCharacter, favComic, password } = formData;
+	const { name, email, favCharacter, favComic, password } = formData;
 
 	const navigate = useNavigate();
 
@@ -33,13 +34,11 @@ const SignUp = () => {
 
 		try {
 			const auth = getAuth();
-
 			const userCredential = await createUserWithEmailAndPassword(
 				auth,
 				email,
 				password
 			);
-			console.log(userCredential);
 			const user = userCredential.user;
 
 			updateProfile(auth.currentUser, {
@@ -64,78 +63,78 @@ const SignUp = () => {
 
 			navigate('/');
 		} catch (error) {
-			console.log('ERROR: ', error);
+			console.log('DEBUG SignUp Error: ', error);
 		}
 	};
 
-	console.log('MYDOC: ', doc);
 	return (
-		<section className='sign-up-container'>
-			<div className='d-flex h-100'>
-				<div className='sign-up-form bg-white text-dark mx-md-5 p-3 p-md-5'>
-					<h1 className='h2'>Create a free account</h1>
-					<p className='text-muted'>
-						Become a member and start exploring the Marvel universe!
-					</p>
-					<form onSubmit={onSubmit}>
-						<div className='mb-3'>
-							<input
-								type='text'
-								className='form-control'
-								id='name'
-								placeholder='Name'
-								value={name}
-								onChange={onChange}
-							/>
+		<section
+			className='sign-up-container d-flex flex-row justify-content-center py-5'
+			style={{
+				backgroundImage: `linear-gradient(45deg,rgba(230, 36, 41, 0.25), rgba(230, 36, 41, .25)), url(${MarvelBG})`,
+			}}
+		>
+			<div className='sign-up-form bg-white text-dark mx-md-5 p-4 p-md-5 my-5 rounded-3'>
+				<h1 className='h2'>Create a free account</h1>
+				<p className='text-muted'>
+					Become a member and start exploring the Marvel universe!
+				</p>
+				<form onSubmit={onSubmit}>
+					<div className='mb-3'>
+						<input
+							type='text'
+							className='form-control'
+							id='name'
+							placeholder='Name'
+							value={name}
+							onChange={onChange}
+						/>
+					</div>
+					<div className='mb-3'>
+						<input
+							type='email'
+							className='form-control'
+							id='email'
+							placeholder='Email'
+							value={email}
+							onChange={onChange}
+						/>
+						<div className='emailHelp'>
+							We'll never share your email with anyone else.
 						</div>
-						<div className='mb-3'>
-							<input
-								type='email'
-								className='form-control'
-								id='email'
-								placeholder='Email'
-								value={email}
-								onChange={onChange}
-							/>
-							<div className='emailHelp'>
-								We'll never share your email with anyone else.
-							</div>
-						</div>
-						<div className='mb-3'>
-							<input
-								type='password'
-								className='form-control'
-								id='password'
-								placeholder='Password'
-								value={password}
-								onChange={onChange}
-							/>
-						</div>
-						<div className='mb-3'>
-							<input
-								type='text'
-								className='form-control'
-								id='favCharacter'
-								placeholder='Who is your favorite character'
-								value={favCharacter}
-								onChange={onChange}
-							/>
-						</div>
-						<div className='mb-3'>
-							<input
-								type='text'
-								className='form-control'
-								id='favComic'
-								placeholder='What is your favorite comic'
-								value={favComic}
-								onChange={onChange}
-							/>
-						</div>
-
-						<button className='btn btn-primary'>Submit</button>
-					</form>
-				</div>
-				<div className='sign-up-img w-100'></div>
+					</div>
+					<div className='mb-3'>
+						<input
+							type='password'
+							className='form-control'
+							id='password'
+							placeholder='Password'
+							value={password}
+							onChange={onChange}
+						/>
+					</div>
+					<div className='mb-3'>
+						<input
+							type='text'
+							className='form-control'
+							id='favCharacter'
+							placeholder='Who is your favorite character?'
+							value={favCharacter}
+							onChange={onChange}
+						/>
+					</div>
+					<div className='mb-3'>
+						<input
+							type='text'
+							className='form-control'
+							id='favComic'
+							placeholder='What is your favorite comic?'
+							value={favComic}
+							onChange={onChange}
+						/>
+					</div>
+					<button className='btn sign-up-btn'>Submit</button>
+				</form>
 			</div>
 		</section>
 	);

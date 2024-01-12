@@ -12,7 +12,7 @@ import CardImage from './ProductGridSection/Card/CardImage';
 
 const Slider = ({ products, linkPath }) => {
 	return (
-		<section className='slider-container my-3'>
+		<section className='slider-container px-0'>
 			<Swiper
 				modules={[Navigation, Pagination, Scrollbar, A11y]}
 				spaceBetween={30}
@@ -48,14 +48,14 @@ const Slider = ({ products, linkPath }) => {
 							}}
 						>
 							<Link
-								to={`/${linkPath}/${product.itemId}`}
+								to={`/${linkPath}/${product.data.itemId}`}
 								className='text-decoration-none'
 							>
-								<div className='card'>
-									<CardHeader title={product.title || product.name} />
+								<div className='card rounded-0'>
+									<CardHeader title={product.data.title || product.data.name} />
 									<CardImage
-										title={product.title || product.name}
-										thumbnail={`${product.image}.${product.imageExt}`}
+										title={product.data.title || product.data.name}
+										thumbnail={`${product.data.image}.${product.data.imageExt}`}
 									/>
 								</div>
 							</Link>
