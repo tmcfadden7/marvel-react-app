@@ -70,7 +70,8 @@ const Footer = () => {
 							<BsTwitter />
 						</a>
 					</div>
-					<p className='mb-0'>&#169;{new Date().getFullYear()} Marvel</p>
+					<p className='mb-0'>&#169; {new Date().getFullYear()} Marvel</p>
+					<p className='fs-6 text'>(Data provided by Marvel. © 2014 Marvel)</p>
 				</div>
 			</div>
 		</section>
