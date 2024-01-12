@@ -3,8 +3,8 @@ import FavoriteStar from '../../FavoriteStar';
 
 const ProductDetails = ({ content }) => {
 	return (
-		<section className='product-details-container'>
-			<div className='container py-5'>
+		<section className='product-details-container rounded-5'>
+			<div className='container p-1 p-sm-5 '>
 				<div className='product-details-header px-sm-5 py-5 mx-auto text-white text-center rounded-5'>
 					<div className='row'>
 						<div className='col-12 col-md-6 mb-5 mb-md-0'>
@@ -14,19 +14,19 @@ const ProductDetails = ({ content }) => {
 							<p>{content.description}</p>
 							{content.creators && content.creators.items.length > 0 ? (
 								<>
-									Creators:&nbsp;
+									<p className='h4'>Creators:</p>
 									{content.creators.items.map((creator, index) => {
 										return (
 											<div key={index}>
 												<p>
-													{creator.name} - {creator.role},&nbsp;
+													{creator.name} - {creator.role.toUpperCase()}
 												</p>
 											</div>
 										);
 									})}
 								</>
 							) : (
-								''
+								<></>
 							)}
 							<FavoriteStar favorite={content} />
 						</div>

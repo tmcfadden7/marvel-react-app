@@ -32,7 +32,7 @@ function App() {
 				if (fetchApi && characterName) {
 					setIsCharactersLoading(true);
 					const response = await axios(
-						`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${characterName}&limit=100&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`,
+						`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${characterName}&limit=50&ts=1&apikey=${process.env.REACT_APP_MARVEL_API_KEY}&hash=${process.env.REACT_APP_MARVEL_API_HASH_KEY}`,
 						{ signal: controller.signal }
 					);
 					const data = await response.data.data.results;
@@ -50,7 +50,7 @@ function App() {
 					setIsCharactersLoading(false);
 				}
 			} catch (error) {
-				console.log(error);
+				console.log('DEBUG FetchCharacters Error', error);
 				setIsCharactersLoading(false);
 			}
 		};
@@ -69,7 +69,7 @@ function App() {
 				if (fetchApi && comicTitle) {
 					setIsComicsLoading(true);
 					const response = await axios(
-						`http://gateway.marvel.com/v1/public/comics?titleStartsWith=${comicTitle}&limit=50&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`,
+						`http://gateway.marvel.com/v1/public/comics?titleStartsWith=${comicTitle}&limit=50&ts=1&apikey=${process.env.REACT_APP_MARVEL_API_KEY}&hash=${process.env.REACT_APP_MARVEL_API_HASH_KEY}`,
 						{ signal: controller.signal }
 					);
 					const data = await response.data.data.results;
@@ -87,7 +87,7 @@ function App() {
 					setIsComicsLoading(false);
 				}
 			} catch (error) {
-				console.log(error);
+				console.log('DEBUG FetchComics Error', error);
 				setIsComicsLoading(false);
 			}
 		};
@@ -98,14 +98,6 @@ function App() {
 		};
 	}, [comicTitle, fetchApi]);
 
-	// TODO: IMPROVE LOADING STATES
-	// if (isCharactersLoading) return <Spinner />;
-	// if (isComicsLoading) return <Spinner />;
-
-	// TODO: ADD NO RESULTS FOUND PAGE
-	// if (!characters.length && !isCharactersLoading)
-	// 	return <p>No Results found</p>;
-	// if (!comics.length && !isComicsLoading) return <p>No Results found</p>;
 	return (
 		<Router>
 			<NavBar />
@@ -155,18 +147,25 @@ function App() {
 					path='/login'
 					element={<LogIn characters={characters} comics={comics} />}
 				/>
-				<Route
-					path='/characters/:itemId'
-					element={
-						<ProductDetailSection
-							product={characters}
-							isLoading={isCharactersLoading}
-						/>
-					}
-				/>
+				<Route path='/characters/:itemId' element={<PrivateRoute />}>
+					<Route
+						path='/characters/:itemId'
+						element={
+							<ProductDetailSection
+								product={characters}
+								isLoading={isCharactersLoading}
+							/>
+						}
+					/>
+				</Route>
 				<Route
 					path='/comics/:itemId'
-					element={<ProductDetailSection product={comics} />}
+					element={
+						<ProductDetailSection
+							product={comics}
+							isLoading={isComicsLoading}
+						/>
+					}
 				/>
 			</Routes>
 			<Footer />

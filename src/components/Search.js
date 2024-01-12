@@ -4,10 +4,10 @@ const Search = ({ setProduct, productType }) => {
 			<div className='container '>
 				<form className='d-flex'>
 					<input
-						className='form-control my-5  mx-auto border border-dark border-3'
+						className='form-control my-5 mx-auto border border-dark border-3'
 						type='search'
 						placeholder={`Search ${productType}`}
-						onKeyUp={(e) => {
+						onChange={(e) => {
 							e.target.value ? setProduct(e.target.value) : setProduct('a');
 						}}
 					/>

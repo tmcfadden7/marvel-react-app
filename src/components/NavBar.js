@@ -19,7 +19,7 @@ const NavBar = () => {
 	}, [auth]);
 
 	return (
-		<nav className='navbar sticky-top navbar-expand-lg navbar-light'>
+		<nav className='navbar sticky-top navbar-expand-lg navbar-light py-2'>
 			<div className='container'>
 				<Link to='/' className='navbar-brand'>
 					<img src={logo} alt='' className='d-inline-block align-text-top' />
@@ -37,24 +37,48 @@ const NavBar = () => {
 				</button>
 				<div className='collapse navbar-collapse' id='navbarSupportedContent'>
 					<ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-						<li className='nav-item'>
+						<li className='nav-item fs-4 text'>
 							<Link to='/' className='nav-link active text-light'>
-								Home
+								<span
+									className='d-block w-100'
+									data-bs-toggle='collapse'
+									data-bs-target='.navbar-collapse.show'
+								>
+									Home
+								</span>
 							</Link>
 						</li>
-						<li className='nav-item'>
+						<li className='nav-item fs-4 text'>
 							<Link to='/characters' className='nav-link text-light'>
-								Characters
+								<span
+									className='d-block w-100'
+									data-bs-toggle='collapse'
+									data-bs-target='.navbar-collapse.show'
+								>
+									Characters
+								</span>
 							</Link>
 						</li>
-						<li className='nav-item'>
+						<li className='nav-item fs-4 text'>
 							<Link to='/comics' className='nav-link text-light'>
-								Comics
+								<span
+									className='d-block w-100'
+									data-bs-toggle='collapse'
+									data-bs-target='.navbar-collapse.show'
+								>
+									Comics
+								</span>
 							</Link>
 						</li>
 					</ul>
 					<Link to={user ? '/profile' : '/login'}>
-						<CgProfile color='#ffffff' size={25} />
+						<span
+							className='d-block w-100'
+							data-bs-toggle='collapse'
+							data-bs-target='.navbar-collapse.show'
+						>
+							<CgProfile color='#ffffff' size={25} />
+						</span>
 					</Link>
 				</div>
 			</div>

@@ -1,13 +1,20 @@
 import ProductGridSection from '../../ProductGridSection';
 
-const ComicSection = ({ comics, isComLoading, setProduct }) => {
+const ComicSection = ({
+	comics,
+	isComLoading,
+	setProduct,
+	seeMoreText,
+	seeMoreLink,
+	productType,
+}) => {
 	return (
 		<ProductGridSection
 			products={comics}
 			isLoading={isComLoading}
-			productType={'comics'}
-			seeMoreText={'See more comics'}
-			seeMoreLink={'/comics'}
+			productType={productType}
+			seeMoreText={seeMoreText}
+			seeMoreLink={seeMoreLink}
 			setProduct={setProduct}
 		/>
 	);

@@ -82,13 +82,13 @@ img {
 .sign-up-container {
 	background-color: #fff;
 	height: 100%;
-	.sign-up-img {
-		background-image: url('./assets/marvel-banner.jpg');
-		height: 100%;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
+	// .sign-up-img {
+	// 	background-image: url('./assets/marvel-banner.jpg');
+	// 	height: 100%;
+	// 	background-position: center;
+	// 	background-repeat: no-repeat;
+	// 	background-size: cover;
+	// }
 	.sign-up-form {
 		input {
 			border-radius: 0;
@@ -103,6 +103,16 @@ img {
 		.email-help {
 			font-size: 14px;
 		}
+	}
+	.sign-up-btn {
+		background-color: #e62429;
+		color: #fff;
+		border: 2px #202020 solid;
+	}
+	.sign-up-btn:hover {
+		background-color: #202020;
+		color: #fff;
+		border: 2px #e62429 solid;
 	}
 }
 .profile-container {
@@ -201,6 +211,9 @@ img {
 			transform: scale(110%);
 		}
 	}
+	.slider-container {
+		background-color: rgba(0, 0, 0, 0.7);
+	}
 }
 .swiper-button-prev {
 	color: #e62429 !important;
@@ -230,7 +243,7 @@ img {
 		display: flex;
 		height: 350px;
 	}
-	.container:hover {
+	.random-product-card-container:hover {
 		.card-img {
 			transition: 0.4s;
 			transform: scale(110%);
@@ -239,10 +252,6 @@ img {
 			text-decoration: underline;
 		}
 	}
-}
-
-.personal-section {
-	background-color: #202020;
 }
 
 .login-container {
@@ -265,7 +274,9 @@ img {
 
 .product-detail-section-container,
 .product-grid-section,
-.product-grid-section {
+.product-grid-section,
+.profile-container,
+.sign-up-container {
 	background-repeat: repeat;
 	background-size: contain;
 	background-attachment: fixed;
@@ -278,11 +289,13 @@ img {
 	min-height: 250px;
 }
 
-.random-char-container .container {
+.random-char-container .random-product-card-container,
+.random-char-container .random-product-error {
 	color: #fff;
 	background-color: #000;
 	padding: 25px;
-	border-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
 	margin-top: 10px;
 }
 .showcase-container {
@@ -326,13 +339,18 @@ img {
 	}
 }
 .product-details-container {
-	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-		url('../src/assets/Marvel-Background2.jpg') no-repeat;
-	background-size: cover;
+	background: rgba(0, 0, 0, 0.85);
+	@media (min-width: 576px) {
+		background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+			url('../src/assets/Marvel-Background2.jpg') no-repeat;
+		background-size: cover;
+	}
 }
 .product-details-container {
 	.product-details-header {
-		background: rgba(0, 0, 0, 0.6);
+		@media (min-width: 576px) {
+			background: rgba(0, 0, 0, 0.6);
+		}
 	}
 }
 .showcase-container::before,

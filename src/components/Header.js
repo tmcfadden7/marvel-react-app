@@ -4,17 +4,21 @@ import SignIn from './SignIn';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import Skeleton from 'react-loading-skeleton';
 
 const Header = () => {
 	const [show, setShow] = useState(false);
 	const [user, setUser] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const auth = getAuth();
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (currentUser) => {
 			setUser(currentUser);
+			setIsLoading(false);
 		});
+		return () => setUser(null);
 	}, [auth, setUser]);
 
 	const handleClose = () => setShow(false);
@@ -30,12 +34,12 @@ const Header = () => {
 								Find an old favorite comic or find a new one! Lorem ipsum dolor
 								sit amet consectetur adipisicing elit.
 							</p>
-							<Link to='/'>
+							<Link to={`${user ? '/profile' : '/sign-up'}`}>
 								<button className='btn btn-outline-light text-white mt-3 mt-md-0'>
 									Learn More
 								</button>
 							</Link>
-							{!user && (
+							{!user && !isLoading && (
 								<>
 									<Button
 										className='d-md-none btn-outline-light text-white ms-3 mt-3'
@@ -59,15 +63,22 @@ const Header = () => {
 							)}
 						</div>
 						<div className='col col-md-6 col-lg-4 d-none d-md-block rounded-5'>
-							{user ? (
-								<>
-									<h2 className='text-white display-5'>
-										Welcome back{' '}
-										<span className='text-capitalize'>{user.displayName}</span>!
-									</h2>
-								</>
+							{isLoading ? (
+								<Skeleton count={5} />
 							) : (
-								<SignIn />
+								<>
+									{user ? (
+										<h2 className='text-white display-5'>
+											Welcome back{' '}
+											<span className='text-capitalize'>
+												{user.displayName}
+											</span>
+											!
+										</h2>
+									) : (
+										<SignIn />
+									)}
+								</>
 							)}
 						</div>
 					</div>

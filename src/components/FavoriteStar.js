@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { db } from '../firebase.config';
 import {
 	collection,
-	getDocs,
 	addDoc,
 	deleteDoc,
 	doc,
@@ -16,15 +15,14 @@ import { MdOutlineFavorite, MdOutlineFavoriteBorder } from 'react-icons/md';
 
 const FavoriteStar = ({ favorite }) => {
 	const [favoritesFromDb, setFavoritesFromDb] = useState([]);
+	const [userFavoritesFromDb, setUserFavoritesFromDb] = useState([]);
 	const [show, setShow] = useState(false);
-
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+
+	const auth = getAuth();
 	const whichFavorites = favorite.title ? 'favComics' : 'favCharacters';
 	const favoritesCollectionRef = collection(db, whichFavorites);
-	const auth = getAuth();
-
-	console.log('AUTH: ', auth);
 
 	useEffect(() => {
 		const q = query(collection(db, whichFavorites));
@@ -35,25 +33,34 @@ const FavoriteStar = ({ favorite }) => {
 					...doc.data(),
 				}))
 			);
+			return () => {
+				setFavoritesFromDb([]);
+			};
 		});
-	}, []);
+	}, [whichFavorites]);
 
-	console.log('favoritesFromDb', favoritesFromDb);
-	console.log('fav', favorite);
+	useEffect(() => {
+		if (auth?.currentUser?.uid) {
+			const userFavs = favoritesFromDb.filter((fav) => {
+				return fav.userRef === auth?.currentUser?.uid;
+			});
+			setUserFavoritesFromDb(userFavs);
+		}
+	}, [auth?.currentUser?.uid, favoritesFromDb]);
 
-	const favMatch = favoritesFromDb.filter((fav) => {
-		console.log('does it match', fav.itemId, favorite.id);
-		return fav.itemId === favorite.id;
-	});
-	console.log('YES', favMatch);
-
-	const isFavSavedInDb = favMatch.length > 0;
+	const favMatch = useMemo(() => {
+		if (userFavoritesFromDb.length > 0) {
+			return userFavoritesFromDb.filter((fav) => {
+				return fav.itemId === favorite.id;
+			});
+		} else return [];
+	}, [favorite.id, userFavoritesFromDb]);
 
 	const addToFavorites = async (favorite) => {
 		if (!auth.currentUser) {
 			handleShow();
 			return;
-		} else if (favMatch.length === 0) {
+		} else if (favMatch?.length === 0) {
 			try {
 				await addDoc(favoritesCollectionRef, {
 					...(favorite.title
@@ -66,10 +73,10 @@ const FavoriteStar = ({ favorite }) => {
 					userRef: auth.currentUser.uid,
 				});
 			} catch (error) {
-				console.log('ERROR: ', error);
+				console.log('DEBUG FavoriteStar Error: ', error);
 			}
 		} else {
-			const favDoc = doc(db, 'favorites', favMatch[0].id.toString());
+			const favDoc = doc(db, whichFavorites, favMatch[0].id.toString());
 			await deleteDoc(favDoc);
 		}
 	};
@@ -77,10 +84,10 @@ const FavoriteStar = ({ favorite }) => {
 	return (
 		<>
 			<Button
-				variant={isFavSavedInDb ? 'dark' : 'light'}
+				variant={favMatch?.length > 0 ? 'dark' : 'light'}
 				onClick={() => addToFavorites(favorite)}
 			>
-				{isFavSavedInDb ? (
+				{favMatch?.length > 0 ? (
 					<MdOutlineFavorite
 						color='red'
 						size={25}
@@ -94,7 +101,7 @@ const FavoriteStar = ({ favorite }) => {
 						style={{ verticalAlign: 'bottom' }}
 					/>
 				)}
-				{isFavSavedInDb ? ' Remove from ' : ' Add to '}
+				{favMatch?.length > 0 ? ' Remove from ' : ' Add to '}
 				favorites
 			</Button>
 			<Modal show={show} onHide={handleClose}>

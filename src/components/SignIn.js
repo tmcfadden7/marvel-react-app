@@ -22,77 +22,11 @@ const SignIn = () => {
 		email: '',
 		password: '',
 	});
-	const [user, setUser] = useState({});
-	const [userFavCharacter, setUserFavCharacter] = useState('');
 
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	// console.log('LOCATION', location);
-
 	const auth = getAuth();
-
-	useEffect(() => {
-		const fetchFavCharacters = async () => {
-			try {
-				const fetchCollection = collection(db, 'users');
-
-				const q = query(
-					fetchCollection,
-					where('favCharacter', '!=', '')
-					// orderBy('timestamp', 'desc'),
-					// limit(1)
-				);
-
-				const querySnap = await getDocs(q);
-				const fav = [];
-
-				querySnap.forEach((doc) => {
-					// console.log('MYDATA', doc.data());
-
-					//NOT WORKING
-					return fav.push(...fav, {
-						data: doc.data(),
-					});
-				});
-
-				fav.forEach((char) => {
-					if (user.email === char.data.email) {
-						setUserFavCharacter(char.data.favCharacter);
-					}
-				});
-			} catch (e) {
-				console.log('GET DOC ERROR', e);
-			}
-		};
-
-		fetchFavCharacters();
-		return () => {
-			setUserFavCharacter('');
-		};
-	}, [user]);
-
-	// useEffect(() => {
-	// 	const favMarvelCharacter = async () => {
-	// 		if (userFavCharacter) {
-	// 			const response = await axios(
-	// 				`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${userFavCharacter}&limit=5&ts=1&apikey=381b1b1d55431234af33e3c11953547e&hash=1dcf741e1f53611062f293df3dfd240c`
-	// 			);
-	// 			const data = await response.data.data.results;
-
-	// 			console.log('this', data);
-	// 		}
-	// 	};
-
-	// 	favMarvelCharacter();
-	// }, [userFavCharacter]);
-
-	// IS THIS WORKING?
-	useEffect(() => {
-		onAuthStateChanged(auth, (currentUser) => {
-			setUser(currentUser);
-		});
-	}, [auth]);
 
 	const { email, password } = formData;
 
@@ -105,26 +39,23 @@ const SignIn = () => {
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		try {
-			const userCredential = await signInWithEmailAndPassword(
-				auth,
-				email,
-				password
-			);
-			setFormData({
-				email: '',
-				password: '',
+
+		signInWithEmailAndPassword(auth, email, password)
+			.then(() => {
+				const page = location.pathname;
+				if (page.toLowerCase().includes('signin')) {
+					navigate('/profile');
+				} else {
+					navigate('/');
+				}
+				setFormData({
+					email: '',
+					password: '',
+				});
+			})
+			.catch((error) => {
+				console.log('DEBUG SignIn Error:', error);
 			});
-			const page = location.pathname;
-			if (page.toLowerCase().includes('signin')) {
-				navigate('/profile');
-			} else {
-				navigate('/');
-			}
-			console.log(userCredential);
-		} catch (error) {
-			console.log(error);
-		}
 	};
 
 	return (
