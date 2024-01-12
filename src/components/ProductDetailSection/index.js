@@ -34,7 +34,7 @@ const ProductDetailSection = ({ product, isLoading }) => {
 			} else {
 				try {
 					const response = await axios(
-						`http://gateway.marvel.com/v1/public/${productType}/${itemId}?ts=1&apikey=${process.env.REACT_APP_MARVEL_API_KEY}&hash=${process.env.REACT_APP_MARVEL_API_HASH_KEY}`
+						`https://gateway.marvel.com/v1/public/${productType}/${itemId}?ts=1&apikey=${process.env.REACT_APP_MARVEL_API_KEY}&hash=${process.env.REACT_APP_MARVEL_API_HASH_KEY}`
 					);
 					const data = await response.data.data.results;
 					setProductDetails(data);
