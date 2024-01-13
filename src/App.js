@@ -147,17 +147,15 @@ function App() {
 					path='/login'
 					element={<LogIn characters={characters} comics={comics} />}
 				/>
-				<Route path='/characters/:itemId' element={<PrivateRoute />}>
-					<Route
-						path='/characters/:itemId'
-						element={
-							<ProductDetailSection
-								product={characters}
-								isLoading={isCharactersLoading}
-							/>
-						}
-					/>
-				</Route>
+				<Route
+					path='/characters/:itemId'
+					element={
+						<ProductDetailSection
+							product={characters}
+							isLoading={isCharactersLoading}
+						/>
+					}
+				/>
 				<Route
 					path='/comics/:itemId'
 					element={
