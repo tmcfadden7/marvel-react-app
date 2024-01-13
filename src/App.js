@@ -36,14 +36,9 @@ function App() {
 						{ signal: controller.signal }
 					);
 					const data = await response.data.data.results;
-					const filterData = await data.filter(
-						(char) =>
-							char.description !== '' &&
-							!char.thumbnail.path.includes('image_not_available')
-					);
 					if (isMounted) {
-						setCharacters(filterData);
-						setIsCharactersLoading(false);
+						setCharacters(data);
+						setIsCharactersLoading(false); 
 					}
 				} else {
 					setCharacters(Data.characters);
@@ -73,13 +68,8 @@ function App() {
 						{ signal: controller.signal }
 					);
 					const data = await response.data.data.results;
-					const filterData = await data.filter(
-						(char) =>
-							char.description !== '' &&
-							!char.thumbnail.path.includes('image_not_available')
-					);
 					if (isMounted) {
-						setComics(filterData);
+						setComics(data);
 						setIsComicsLoading(false);
 					}
 				} else {
@@ -147,17 +137,15 @@ function App() {
 					path='/login'
 					element={<LogIn characters={characters} comics={comics} />}
 				/>
-				<Route path='/characters/:itemId' element={<PrivateRoute />}>
-					<Route
-						path='/characters/:itemId'
-						element={
-							<ProductDetailSection
-								product={characters}
-								isLoading={isCharactersLoading}
-							/>
-						}
-					/>
-				</Route>
+				<Route
+					path='/characters/:itemId'
+					element={
+						<ProductDetailSection
+							product={characters}
+							isLoading={isCharactersLoading}
+						/>
+					}
+				/>
 				<Route
 					path='/comics/:itemId'
 					element={

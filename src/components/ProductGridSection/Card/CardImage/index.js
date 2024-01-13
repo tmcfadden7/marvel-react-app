@@ -1,4 +1,4 @@
-import logo from '../../../../assets/marvel-logo.jpg';
+import logo from '../../../../assets/marvel.jpg';
 
 const CardImage = ({ title, thumbnail }) => {
 	const img = thumbnail?.path || thumbnail;

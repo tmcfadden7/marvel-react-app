@@ -7,6 +7,7 @@ import { useLayoutEffect } from 'react';
 import Search from '../Search';
 import Pagination from '../Pagination';
 import CardLoader from './Card/CardLoader';
+import { useLocation } from 'react-router-dom';
 
 const ProductGridSection = ({
 	isLoading,
@@ -16,13 +17,24 @@ const ProductGridSection = ({
 	seeMoreLink,
 	setProduct,
 }) => {
+	const location = useLocation();
 	useLayoutEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
+		const page = location.pathname;
+		if (
+			page.toLowerCase().includes('comics') ||
+			page.toLowerCase().includes('characters')
+		) {
+			window.scrollTo(0, 0);
+		}
+	}, [location.pathname]);
 
 	return (
 		<>
-			<Search setProduct={setProduct} productType={productType} />
+			<Search
+				setProduct={setProduct}
+				productType={productType}
+				products={products}
+			/>
 			<Pagination setProduct={setProduct} />
 			<section
 				className='product-grid-section'
