@@ -3,11 +3,22 @@ import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import SectionHeader from './SectionHeader';
+import logo from '../assets/marvel.jpg';
 
 const RandomProduct = ({ product, productType, isLoading }) => {
 	const randomProduct = useMemo(() => {
 		return Math.floor(Math.random() * product.length);
 	}, [product.length]);
+
+	const img = product[randomProduct]?.thumbnail?.path;
+	const imgExt = product[randomProduct]?.thumbnail?.extension;
+	let noImg = img.includes('.jpg')
+		? img
+		: img.includes('.png')
+		? img
+		: img + '.' + imgExt;
+	noImg = !noImg.includes('image_not_available') ? noImg : logo;
+
 	return (
 		<section className='random-char-container pt-0 mt-5'>
 			{!isLoading && product.length === 0 ? (
@@ -37,11 +48,7 @@ const RandomProduct = ({ product, productType, isLoading }) => {
 										<div className='card'>
 											<div className='card-img'>
 												<img
-													src={
-														product[randomProduct]?.thumbnail?.path +
-														'.' +
-														product[randomProduct]?.thumbnail?.extension
-													}
+													src={noImg}
 													alt={
 														product[randomProduct]?.name ||
 														product[randomProduct]?.title
