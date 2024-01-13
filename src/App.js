@@ -36,14 +36,9 @@ function App() {
 						{ signal: controller.signal }
 					);
 					const data = await response.data.data.results;
-					const filterData = await data.filter(
-						(char) =>
-							char.description !== '' &&
-							!char.thumbnail.path.includes('image_not_available')
-					);
 					if (isMounted) {
-						setCharacters(filterData);
-						setIsCharactersLoading(false);
+						setCharacters(data);
+						setIsCharactersLoading(false); 
 					}
 				} else {
 					setCharacters(Data.characters);
@@ -73,13 +68,8 @@ function App() {
 						{ signal: controller.signal }
 					);
 					const data = await response.data.data.results;
-					const filterData = await data.filter(
-						(char) =>
-							char.description !== '' &&
-							!char.thumbnail.path.includes('image_not_available')
-					);
 					if (isMounted) {
-						setComics(filterData);
+						setComics(data);
 						setIsComicsLoading(false);
 					}
 				} else {
