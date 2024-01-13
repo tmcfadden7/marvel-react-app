@@ -4,12 +4,17 @@ import {
 	getAuth,
 	createUserWithEmailAndPassword,
 	updateProfile,
+	sendPasswordResetEmail,
 } from 'firebase/auth';
 import { db } from '../firebase.config';
 import { useNavigate } from 'react-router-dom';
 import MarvelBG from '../../src/assets/Marvel-Background.jpg';
+import { MdErrorOutline } from 'react-icons/md';
 
 const SignUp = () => {
+	const [error, setError] = useState(null);
+	const [showResetPassword, setShowResetPassword] = useState(false);
+	const [resetEmailSent, setResetEmailSent] = useState(false);
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -60,10 +65,35 @@ const SignUp = () => {
 				favCharacter: '',
 				favComic: '',
 			});
-
+			setError(null);
+			setShowResetPassword(false);
 			navigate('/');
 		} catch (error) {
 			console.log('DEBUG SignUp Error: ', error);
+			if (error.code.toLowerCase() === 'auth/email-already-in-use') {
+				setError(
+					'Email is already in use. Please choose a different email or reset your password.'
+				);
+				setShowResetPassword(true);
+			} else {
+				setError('An error occurred during sign up. Please try again.');
+			}
+		}
+	};
+
+	const handleResetPassword = async () => {
+		try {
+			const auth = getAuth();
+			await sendPasswordResetEmail(auth, formData.email);
+			setResetEmailSent(true);
+			setShowResetPassword(false);
+			setError(null);
+			setTimeout(() => {
+				navigate('/login');
+			}, 5000);
+		} catch (error) {
+			console.log('DEBUG Reset PW Error: ', error);
+			setError('Error sending reset email. Please check the email address.');
 		}
 	};
 
@@ -135,6 +165,17 @@ const SignUp = () => {
 					</div>
 					<button className='btn sign-up-btn'>Submit</button>
 				</form>
+				{error && <p className='text-danger mt-3 fs-5'>*{error}</p>}
+				{showResetPassword && (
+					<button className='btn btn-secondary' onClick={handleResetPassword}>
+						Reset Password
+					</button>
+				)}
+				{resetEmailSent && (
+					<p className='bg-success text-white text-center rounded mt-3 p-2 fs-5 text'>
+						Please check your email
+					</p>
+				)}
 			</div>
 		</section>
 	);

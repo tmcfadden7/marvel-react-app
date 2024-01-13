@@ -156,7 +156,7 @@ const Profile = () => {
 							{currentUser[0]?.data?.favComic && (
 								<div className='col-12 mt-3'>
 									<p className='fs-3 text'>
-										Favorite character: {currentUser[0]?.data.favComic}
+										Favorite comic: {currentUser[0]?.data.favComic}
 									</p>
 								</div>
 							)}
