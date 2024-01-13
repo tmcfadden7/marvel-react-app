@@ -10,14 +10,37 @@ const RandomProduct = ({ product, productType, isLoading }) => {
 		return Math.floor(Math.random() * product.length);
 	}, [product.length]);
 
-	const img = product[randomProduct]?.thumbnail?.path;
-	const imgExt = product[randomProduct]?.thumbnail?.extension;
-	let noImg = img.includes('.jpg')
-		? img
-		: img.includes('.png')
-		? img
-		: img + '.' + imgExt;
-	noImg = !noImg.includes('image_not_available') ? noImg : logo;
+	const noImg = useMemo(() => {
+		if (product.length) {
+			if (
+				product[randomProduct]?.thumbnail &&
+				product[randomProduct]?.thumbnail?.path?.includes('image_not_available')
+			) {
+				return logo;
+			} else {
+				const img = product[randomProduct]?.thumbnail?.path;
+				const imgExt = product[randomProduct]?.thumbnail?.extension;
+				let thumbnail = img.includes('.jpg')
+					? img
+					: img.includes('.png')
+					? img
+					: img + '.' + imgExt;
+				thumbnail = !thumbnail.includes('image_not_available')
+					? thumbnail
+					: logo;
+				return thumbnail;
+			}
+		}
+	}, [product, randomProduct]);
+
+	// const img = product[randomProduct]?.thumbnail?.path;
+	// const imgExt = product[randomProduct]?.thumbnail?.extension;
+	// let noImg = img.includes('.jpg')
+	// 	? img
+	// 	: img.includes('.png')
+	// 	? img
+	// 	: img + '.' + imgExt;
+	// noImg = !noImg.includes('image_not_available') ? noImg : logo;
 
 	return (
 		<section className='random-char-container pt-0 mt-5'>
@@ -49,6 +72,11 @@ const RandomProduct = ({ product, productType, isLoading }) => {
 											<div className='card-img'>
 												<img
 													src={noImg}
+													// src={
+													// 	product[randomProduct]?.thumbnail?.path +
+													// 	'.' +
+													// 	product[randomProduct]?.thumbnail?.extension
+													// }
 													alt={
 														product[randomProduct]?.name ||
 														product[randomProduct]?.title
