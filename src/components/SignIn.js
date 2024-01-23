@@ -15,9 +15,11 @@ import {
 } from 'firebase/firestore';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { db } from '../firebase.config';
+import { toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Button } from 'react-bootstrap';
 
-const SignIn = () => {
+const SignIn = ({handleClose}) => {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
@@ -42,6 +44,17 @@ const SignIn = () => {
 
 		signInWithEmailAndPassword(auth, email, password)
 			.then(() => {
+				toast('🚀 Sign in successful! 🚀', {
+					position: 'top-right',
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: false,
+					draggable: true,
+					progress: undefined,
+					theme: 'dark',
+					transition: Bounce,
+				});
 				const page = location.pathname;
 				if (page.toLowerCase().includes('signin')) {
 					navigate('/profile');
@@ -79,7 +92,6 @@ const SignIn = () => {
 								We'll never share your email with anyone.
 							</p>
 						</div>
-
 						<div className='my-3'>
 							<input
 								type='password'
@@ -100,12 +112,21 @@ const SignIn = () => {
 						</Button>
 					</form>
 					<p className='mt-3 text-muted' style={{ fontSize: '18px' }}>
+						Forgot your password?{' '}
+						<Link
+							to='/reset-password'
+							style={{ fontSize: '16px', textDecoration: 'underline' }}
+						>
+							<strong>Reset Password</strong>
+						</Link>
+					</p>
+					<p className='mt-3 text-muted' style={{ fontSize: '18px' }}>
 						Don't have an account?{' '}
 						<Link
 							to='/sign-up'
 							style={{ fontSize: '16px', textDecoration: 'underline' }}
 						>
-							<strong>Sign Up</strong>
+							<strong>Sign up</strong>
 						</Link>
 					</p>
 				</div>

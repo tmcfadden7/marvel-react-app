@@ -4,6 +4,7 @@ import ProductDetails from './ProductDetails';
 import MarvelBG from '../../assets/Marvel-Background.jpg';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import DetailsLoader from './DetailsLoader';
+import NavigateBack from '../NavigateBack';
 
 const ProductDetailSection = ({ product, isLoading }) => {
 	const [productDetails, setProductDetails] = useState(null);
@@ -59,7 +60,8 @@ const ProductDetailSection = ({ product, isLoading }) => {
 					backgroundImage: `linear-gradient(45deg,rgba(230, 36, 41, 0.25), rgba(230, 36, 41, .25)), url(${MarvelBG})`,
 				}}
 			>
-				<div className='container mt-4 py-5'>
+				<NavigateBack />
+				<div className='container'>
 					<div className='row justify-content-around'>
 						{isLoading || productDetailsLoading ? (
 							<div className='product-details-container'>
