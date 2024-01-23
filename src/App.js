@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import Home from './pages/Home';
 import { Data } from './data';
+import { ToastContainer } from 'react-toastify';
 import SignUp from './components/SignUp';
 import Profile from './pages/Profile';
 import PrivateRoute from './components/PrivateRoute';
@@ -14,6 +15,7 @@ import ProductDetailSection from './components/ProductDetailSection/index.js';
 import CharacterSection from './components/Products/CharacterSection/index.js';
 import ComicSection from './components/Products/ComicSection/index.js';
 import './styles.scss';
+import ResetPassword from './pages/ResetPassword.js';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -38,7 +40,7 @@ function App() {
 					const data = await response.data.data.results;
 					if (isMounted) {
 						setCharacters(data);
-						setIsCharactersLoading(false); 
+						setIsCharactersLoading(false);
 					}
 				} else {
 					setCharacters(Data.characters);
@@ -89,75 +91,82 @@ function App() {
 	}, [comicTitle, fetchApi]);
 
 	return (
-		<Router>
-			<NavBar />
-			<Routes>
-				<Route element={<Layout />}>
+		<>
+			<ToastContainer />
+			<Router>
+				<NavBar />
+				<Routes>
+					<Route element={<Layout />}>
+						<Route
+							path='/'
+							element={
+								<Home
+									isCharLoading={isCharactersLoading}
+									characters={characters}
+									comics={comics}
+									isComLoading={isComicsLoading}
+									setCharacterName={setCharacterName}
+									setComicTitle={setComicTitle}
+								/>
+							}
+						/>
+					</Route>
+					<Route path='/profile' element={<PrivateRoute />}>
+						<Route path='/profile' element={<Profile />} />
+					</Route>
 					<Route
-						path='/'
+						path='/characters'
 						element={
-							<Home
-								isCharLoading={isCharactersLoading}
+							<CharacterSection
 								characters={characters}
-								comics={comics}
-								isComLoading={isComicsLoading}
-								setCharacterName={setCharacterName}
-								setComicTitle={setComicTitle}
+								productType={'characters'}
+								isCharLoading={isCharactersLoading}
+								setProduct={setCharacterName}
 							/>
 						}
 					/>
-				</Route>
-				<Route path='/profile' element={<PrivateRoute />}>
-					<Route path='/profile' element={<Profile />} />
-				</Route>
-				<Route
-					path='/characters'
-					element={
-						<CharacterSection
-							characters={characters}
-							productType={'characters'}
-							isCharLoading={isCharactersLoading}
-							setProduct={setCharacterName}
-						/>
-					}
-				/>
-				<Route
-					path='/comics'
-					element={
-						<ComicSection
-							comics={comics}
-							productType={'comics'}
-							isComLoading={isComicsLoading}
-							setProduct={setComicTitle}
-						/>
-					}
-				/>
-				<Route path='/sign-up' element={<SignUp />} />
-				<Route
-					path='/login'
-					element={<LogIn characters={characters} comics={comics} />}
-				/>
-				<Route
-					path='/characters/:itemId'
-					element={
-						<ProductDetailSection
-							product={characters}
-							isLoading={isCharactersLoading}
-						/>
-					}
-				/>
-				<Route
-					path='/comics/:itemId'
-					element={
-						<ProductDetailSection
-							product={comics}
-							isLoading={isComicsLoading}
-						/>
-					}
-				/>
-			</Routes>
-			<Footer />
-		</Router>
+					<Route
+						path='/comics'
+						element={
+							<ComicSection
+								comics={comics}
+								productType={'comics'}
+								isComLoading={isComicsLoading}
+								setProduct={setComicTitle}
+							/>
+						}
+					/>
+					<Route path='/sign-up' element={<SignUp />} />
+					<Route
+						path='/login'
+						element={<LogIn characters={characters} comics={comics} />}
+					/>
+					<Route
+						path='/characters/:itemId'
+						element={
+							<ProductDetailSection
+								product={characters}
+								isLoading={isCharactersLoading}
+							/>
+						}
+					/>
+					<Route
+						path='/comics/:itemId'
+						element={
+							<ProductDetailSection
+								product={comics}
+								isLoading={isComicsLoading}
+							/>
+						}
+					/>
+					<Route
+						path='/reset-password/'
+						element={<ResetPassword characters={characters} comics={comics} />}
+					/>
+				</Routes>
+				<Footer />
+			</Router>
+		</>
 	);
 }
 

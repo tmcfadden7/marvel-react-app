@@ -10,6 +10,8 @@ import {
 	onSnapshot,
 } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import SignIn from './SignIn';
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from 'react-icons/md';
 
@@ -72,12 +74,34 @@ const FavoriteStar = ({ favorite }) => {
 					imageExt: favorite.thumbnail.extension,
 					userRef: auth.currentUser.uid,
 				});
+				toast('🥰 Fav added to your profile! 🥰 ', {
+					position: 'top-right',
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: false,
+					draggable: true,
+					progress: undefined,
+					theme: 'dark',
+					transition: Bounce,
+				});
 			} catch (error) {
 				console.log('DEBUG FavoriteStar Error: ', error);
 			}
 		} else {
 			const favDoc = doc(db, whichFavorites, favMatch[0].id.toString());
 			await deleteDoc(favDoc);
+			toast('💔 Fav has been removed 💔', {
+				position: 'top-right',
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: true,
+				progress: undefined,
+				theme: 'dark',
+				transition: Bounce,
+			});
 		}
 	};
 

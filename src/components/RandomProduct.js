@@ -33,15 +33,6 @@ const RandomProduct = ({ product, productType, isLoading }) => {
 		}
 	}, [product, randomProduct]);
 
-	// const img = product[randomProduct]?.thumbnail?.path;
-	// const imgExt = product[randomProduct]?.thumbnail?.extension;
-	// let noImg = img.includes('.jpg')
-	// 	? img
-	// 	: img.includes('.png')
-	// 	? img
-	// 	: img + '.' + imgExt;
-	// noImg = !noImg.includes('image_not_available') ? noImg : logo;
-
 	return (
 		<section className='random-char-container pt-0 mt-5'>
 			{!isLoading && product.length === 0 ? (
