@@ -52,17 +52,15 @@ const Search = ({ setProduct, productType, products }) => {
 						{isOpen &&
 							inputItems.map((item, index) => (
 								<>
-									{index < 4 && (
-										<li
-											{...getItemProps({ item, index })}
-											key={item.id}
-											className={`p-2 ${
-												highlightedIndex === index ? 'bg-gray-200' : ''
-											}`}
-										>
-											{item.label}
-										</li>
-									)}
+									<li
+										{...getItemProps({ item, index })}
+										key={item.id}
+										className={`p-2 ${
+											highlightedIndex === index ? 'bg-gray-200' : ''
+										}`}
+									>
+										{item.label}
+									</li>
 								</>
 							))}
 					</ul>

@@ -3,6 +3,7 @@ body {
 	line-height: 1.8rem;
 	margin: 0;
 	padding: 0;
+	min-height: 100vh;
 }
 html {
 	margin: 0;
@@ -12,6 +13,7 @@ html {
 	background-color: #e62429;
 	margin: 0;
 	padding: 0;
+	min-height: 100vh;
 }
 p,
 h1,
@@ -82,13 +84,6 @@ img {
 .sign-up-container {
 	background-color: #fff;
 	height: 100%;
-	// .sign-up-img {
-	// 	background-image: url('./assets/marvel-banner.jpg');
-	// 	height: 100%;
-	// 	background-position: center;
-	// 	background-repeat: no-repeat;
-	// 	background-size: cover;
-	// }
 	.sign-up-form {
 		input {
 			border-radius: 0;
@@ -276,7 +271,8 @@ img {
 .product-grid-section,
 .product-grid-section,
 .profile-container,
-.sign-up-container {
+.sign-up-container,
+.reset-password-container {
 	background-repeat: repeat;
 	background-size: contain;
 	background-attachment: fixed;
@@ -383,9 +379,20 @@ img {
 .search-container ul {
 	@media (min-width: 768px) {
 		width: 50%;
+		max-height: 300px;
 	}
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	width: 100%;
+	max-height: 150px;
+	overflow-y: scroll;
+}
+.search-container li {
+	max-height: 150px;
+	overflow-y: scroll;
+}
+
+.Toastify__progress-bar-theme--dark {
+	background: #e62429;
 }
